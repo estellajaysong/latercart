@@ -15,4 +15,73 @@ ActiveRecord::Schema.define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_wishlists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "wishlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_wishlists", ["user_id"], name: "index_user_wishlists_on_user_id", using: :btree
+  add_index "user_wishlists", ["wishlist_id"], name: "index_user_wishlists_on_wishlist_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "price"
+    t.string   "img_url"
+    t.string   "rating"
+    t.text     "note"
+    t.integer  "wishlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "products", ["wishlist_id"], name: "index_products_on_wishlist_id", using: :btree
+
+  create_table "category_products", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "category_products", ["category_id"], name: "index_category_products_on_category_id", using: :btree
+  add_index "category_products", ["product_id"], name: "index_category_products_on_products_id", using: :btree
+
+  create_table "site_selectors", force: :cascade do |t|
+    t.string   "site_name"
+    t.string   "title_tag"
+    t.string   "price_tag"
+    t.string   "img_tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "user_wishlists", "users"
+  add_foreign_key "user_wishlists", "wishlists"
+  add_foreign_key "products", "wishlists"
+  add_foreign_key "category_products", "categories"
+  add_foreign_key "category_products", "products"
+
 end
