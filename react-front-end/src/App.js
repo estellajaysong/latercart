@@ -14,28 +14,32 @@ class App extends Component {
 
   addWishlist = e => {
     e.preventDefault()
-    console.log(e.target.elements.newWishlist.value)
+    // console.log(e.target.elements.newWishlist.value)
     // const formData = new FormData()
     // formData.set('name', 'Fred')
-    axios.post('/api/wishlists', {newWishlsitName: e.target.elements.newWishlist.value})
-    .then((response) => {
+    // const newWishlistName = e.target.elements.newWishlist.value
+    axios.post('/api/wishlists', {wishlist: {name: 'test'}})
+    .then(response => {
       console.log(response)
-    }).catch(function (error) {
-      // handle error
+      this.setState({
+        wishlists: [response.data, ...this.state.wishlists]
+      })
+    })
+    .catch(error => {
       console.log(error)
-    }) 
+    })
   }
 
   componentDidMount() {
     axios.get('/api/wishlists') // load all the wishlists from rails api
-    .then((response) => {
+    .then(response => {
       // handle success
       // console.log(response.data)// The entire response from the Rails API
       // console.log(response.data.wishlists.length) // Just the message
       this.setState({
-        wishlists: this.state.wishlists.concat(response.data.wishlists)
+        wishlists: response.data
       })
-    }).catch(function (error) {
+    }).catch(error => {
       // handle error
       console.log(error)
     }) 
@@ -45,15 +49,16 @@ class App extends Component {
     return (
       <div className="App">
         < Navbar />
-        <h1>My wishlists</h1>
-        Add new wishlist 
-        <form onSubmit={this.addWishlist}>
-          <input name="newWishlist" placeholder="Type a message and hit ENTER" />  
-          <button type="submit">Add</button>
-        </form>
-        {this.state.wishlists.map(wishlist => (
-          <Wishlist key={wishlist.id} wishlist={wishlist}/>
-        ))}
+        <div className="wishlists">
+        <button className="newWishBtn" onClick={this.addWishlist}>
+          New Wishlist
+        </button>
+        <div className="wishlists-container">
+          {this.state.wishlists.map(wishlist => (
+            <Wishlist key={wishlist.id} wishlist={wishlist}/>
+          ))}
+        </div>
+        </div>
       </div>
     );
   }

@@ -27,12 +27,10 @@ export default class Wishlist extends Component {
 
   render() {
     return (
-
-        <div className="wishlists">
-          {this.props.wishlist.name}
-        <Product />     
-        </div>
-
+      <div className="wishlist">
+        {this.props.wishlist.name}
+      <Product />     
+      </div>
     );
   }
 }

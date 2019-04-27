@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   
   root to: 'wishlists#index'
   namespace :api do
-    get '/wishlists', to: 'wishlists#index'
-    post '/wishlists', to: 'wishlists#index'
-  
+    resources :wishlists
   end
 end

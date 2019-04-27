@@ -2,32 +2,37 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* .wishlists {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
 }
 
-.App-link {
-  color: #61dafb;
+.wishlists-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
+
+.wishlist {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  background: lightgrey;
+  font-size: 11px;
+  text-align: left;
+  float: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.newWishBtn {
+  background: lightgrey;
+  height: 150px;
+  width: 150px;
+  color: purple;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding:10px;
+  float: left;
 }
