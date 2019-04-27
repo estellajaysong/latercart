@@ -17,10 +17,10 @@ class App extends Component {
       axios.get('/api/wishlists') // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // handle success
-        console.log(response.data)// The entire response from the Rails API
-        console.log(response.data.message.length) // Just the message
+        // console.log(response.data)// The entire response from the Rails API
+        // console.log(response.data.wishlists.length) // Just the message
         this.setState({
-          wishlists: this.state.wishlists.concat(response.data.message)
+          wishlists: this.state.wishlists.concat(response.data.wishlists)
         });
       }) 
     // }
