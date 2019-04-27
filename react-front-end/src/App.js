@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Wishlist from './Wishlist.js';
 import Navbar from './Navbar.js';
+import Wishlist from './Wishlist.js';
+import WishlistForm from './WishlistForm'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      wishlists: []
+      wishlists: [],
+      editingWishlistId: null
     }
   }
 
@@ -18,11 +20,12 @@ class App extends Component {
     // const formData = new FormData()
     // formData.set('name', 'Fred')
     // const newWishlistName = e.target.elements.newWishlist.value
-    axios.post('/api/wishlists', {wishlist: {name: 'test'}})
+    axios.post('/api/wishlists', {wishlist: {name: 'My New Wishlist'}})
     .then(response => {
       console.log(response)
       this.setState({
-        wishlists: [response.data, ...this.state.wishlists]
+        wishlists: [response.data, ...this.state.wishlists],
+        editingWishlistId: response.data.id
       })
     })
     .catch(error => {
@@ -55,7 +58,9 @@ class App extends Component {
         </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
-            <Wishlist key={wishlist.id} wishlist={wishlist}/>
+            this.state.editingWishlistId === wishlist.id ? 
+            <WishlistForm key={wishlist.id} wishlist={wishlist}/> :
+            <Wishlist key={wishlist.id} wishlist={wishlist}/> 
           ))}
         </div>
         </div>
