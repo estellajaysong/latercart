@@ -19,34 +19,34 @@ unless Rails.env.development?
   exit 0
 end
 
-puts "Creating Users..."
+puts "Creating users..."
 
 user1 = User.create!({
-  name: 'Alice',
+  username: 'Alice',
   email: 'a@a.com',
   password: 'a'
 })
 
 user2 = User.create!({
-  name: 'Bob',
+  username: 'Bob',
   email: 'b@b.com',
   password: 'b'
 })
 
 user3 = User.create!({
-  name: 'Kate',
+  username: 'Kate',
   email: 'k@k.com',
   password: 'k'
 })
 
-puts "Creating wishlists for users..."
+puts "Creating wishlists..."
 
-user1.wishlists.create!({
+Wishlist.create!({
   name: "Vacation"
 })
-user1.wishlists.create!({
+Wishlist.create!({
   name: "Home"
 })
-user1.wishlists.create!({
+Wishlist.create!({
   name: "Apparel"
 })
