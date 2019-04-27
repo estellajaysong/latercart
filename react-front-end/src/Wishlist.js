@@ -27,7 +27,9 @@ export default class Wishlist extends Component {
   render() {
     return (
       <div className="App">
-       <Product />     
+       <Product />
+       <Product />
+       <Product />
       </div>
     );
   }

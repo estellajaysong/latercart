@@ -59,3 +59,26 @@ code {
   justify-content: space-between;
   background-color: purple;
 }
+
+.product {
+  display:flex;
+  justify-content: space-between;
+  max-width:260px;
+  position: relative;
+  border:        1px solid #ccc;
+  border-radius: 5px;
+  padding:       15px;
+  padding-bottom: 80px;
+  margin-top:    20px;
+}
+
+.product-img{
+  max-width: 100px;
+}
+
+.wishlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

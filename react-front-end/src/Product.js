@@ -25,7 +25,20 @@ export default class Product extends Component {
 
   render() {
     return (
-      <div className="Product">     
+      <div className="product">
+      <div>
+      <h4>Product Name: </h4>
+      <img className="product-img" src="https://www.sephora.com/productimages/sku/s2137289-main-grid.jpg "/>
+      </div>
+      <div>
+      <p>Price: </p>
+      <p>Notes: </p>
+      <p>Date Added: </p>
+      <a href="#">Buy now</a>
+      </div>
+      <div>
+        <a href="#">Back</a>
+        </div>
       </div>
     );
   }
