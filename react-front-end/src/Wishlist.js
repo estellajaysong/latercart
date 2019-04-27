@@ -5,29 +5,13 @@ import Product from './Product.js';
 
 
 export default class Wishlist extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     // message: 'Click the button to load data!'
-  //   }
-  // }
-
-  // fetchData = () => {
-  //   axios.get('/') // You can simply make your requests to "/api/whatever you want"
-  //   .then((response) => {
-  //     // handle success
-  //     console.log("success", response.data) // The entire response from the Rails API
-
-  //     console.log(response.data.message) // Just the message
-  //     this.setState({
-  //       message: response.data.message
-  //     });
-  //   }) 
-  // }
+  editWishlistName = () => {
+    this.props.onClick(this.props.wishlist.id)
+  }
 
   render() {
     return (
-      <div className="wishlist">
+      <div className="wishlist" onClick={this.editWishlistName}>
         <h2>{this.props.wishlist.name}</h2>
       <Product />     
       </div>

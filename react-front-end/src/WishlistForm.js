@@ -10,12 +10,14 @@ class WishlistForm extends Component {
   }
 
   editWishlistName = e => {
+    e.preventDefault()
     this.setState({
       name: e.target.value
     })
   }
 
   saveWishlistName = e => {
+    e.preventDefault()
     axios.put(`/api/wishlists/${this.props.wishlist.id}`, {wishlist: { name: this.state.name }})
     .then(response => {
       console.log(response)
@@ -30,7 +32,7 @@ class WishlistForm extends Component {
       <div className="wishlist" >
         <form onBlur={this.saveWishlistName}>
           <input className='input' type="text"
-            name="name" placeholder='Enter a Title' value={this.state.name} onChange={this.editWishlistName}/>
+            name="name" placeholder='Enter a Title' value={this.state.name} onChange={this.editWishlistName} ref={this.props.nameRef} />
         </form>
       </div>
     );
