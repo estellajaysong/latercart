@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Wishlist from './Wishlist.js';
-import Navbar from './Navbar.js';
-
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // message: 'Click the button to load data!'
+      message: 'Click the button to load data!'
     }
   }
 
@@ -29,8 +26,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      < Navbar />
-      <Wishlist />
+        <h1>{ this.state.message }</h1>
+        <button onClick={this.fetchData} >
+          Fetch Data
+        </button>        
       </div>
     );
   }
