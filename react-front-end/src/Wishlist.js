@@ -28,7 +28,7 @@ export default class Wishlist extends Component {
   render() {
     return (
       <div className="wishlist">
-        {this.props.wishlist.name}
+        <h2>{this.props.wishlist.name}</h2>
       <Product />     
       </div>
     );

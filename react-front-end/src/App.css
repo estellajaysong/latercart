@@ -23,18 +23,38 @@
   float: left;
 }
 
+.wishlist h2 {
+  text-align: center;
+  word-wrap: break-word;
+}
+
 .newWishBtn {
   background: lightgrey;
   height: 150px;
   width: 150px;
   color: purple;
   border: none;
-  font-size: 18px;
+  font-size: 5em;
   cursor: pointer;
-  margin-right: 10px;
-  margin-left: 10px;
-  padding:10px;
+  margin: 10px;
   float: left;
 }
+
+.wishlist input {
+  border: 0;
+  background: none;
+  outline: none;
+  max-width: 140px;
+  font-size: 1.5em;
+  font-weight: 700;
+  padding-top: 14px;
+  text-align: center;
+}
+
+.wishlist input:focus {
+  border: solid 1px purple;
+  text-align: center;
+}
+
 
 

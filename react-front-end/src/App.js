@@ -42,7 +42,8 @@ class App extends Component {
       this.setState({
         wishlists: response.data
       })
-    }).catch(error => {
+    })
+    .catch(error => {
       // handle error
       console.log(error)
     }) 
@@ -54,7 +55,7 @@ class App extends Component {
         < Navbar />
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>
-          New Wishlist
+          +
         </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
