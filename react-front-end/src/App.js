@@ -40,6 +40,17 @@ class App extends Component {
     )
   }
 
+  deleteWishlist = (id) => {
+    axios.delete(`/api/wishlists/${id}`)
+    .then(response => {
+      const index = this.state.wishlists.findIndex(x => x.id === id)
+      this.setState({
+        wishlists: this.state.wishlists.filter((x, i) => i !== index)
+      })
+    })
+    .catch(error => console.log(error))
+  }
+
   componentDidMount() {
     axios.get('/api/wishlists') // load all the wishlists from rails api
     .then(response => {
@@ -61,12 +72,14 @@ class App extends Component {
       <div className="App">
         < Navbar />
         <div className="wishlists">
-        <button className="newWishBtn" onClick={this.addWishlist}>+</button>
+        <button className="newWishBtn" onClick={this.addWishlist}>
+          +
+        </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
             this.state.editingWishlistId === wishlist.id ? 
             <WishlistForm key={wishlist.id} wishlist={wishlist} nameRef= {input => this.name = input}/> :
-            <Wishlist key={wishlist.id} wishlist={wishlist} onClick={this.enableEditing}/> 
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
           ))}
         </div>
         </div>

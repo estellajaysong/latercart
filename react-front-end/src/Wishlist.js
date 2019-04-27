@@ -6,13 +6,20 @@ import Product from './Product.js';
 
 export default class Wishlist extends Component {
   editWishlistName = () => {
-    this.props.onClick(this.props.wishlist.id)
+    this.props.onEdit(this.props.wishlist.id)
+  }
+
+  deleteWishlist = () => {
+    this.props.onDelete(this.props.wishlist.id)
   }
 
   render() {
     return (
-      <div className="wishlist" onClick={this.editWishlistName}>
-        <h2>{this.props.wishlist.name}</h2>
+      <div className="wishlist" >
+        <span className="deleteButton" onClick={this.deleteWishlist}>
+          X
+        </span>
+        <h2 onClick={this.editWishlistName} >{this.props.wishlist.name}</h2>
       <Product />     
       </div>
     );

@@ -14,6 +14,15 @@ class Api::WishlistsController < ApplicationController
     @wishlist.update_attributes(wishlist_params)
     render json: @wishlist
   end
+
+  def destroy
+    @delWishlist = Wishlist.find(params[:id])
+    if @delWishlist.destroy
+      head :no_content, status: :ok
+    else
+      render json: @delWishlist.errors, status: :unprocessable_entity
+    end
+  end
   
   private
   
