@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Product from './Product.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 export default class Wishlist extends Component {
@@ -26,11 +27,15 @@ export default class Wishlist extends Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
+      <Link to="/product">Product</Link>
        <Product />
        <Product />
        <Product />
+       <Route path="/product" component={Product} />
       </div>
+      </Router>
     );
   }
 }

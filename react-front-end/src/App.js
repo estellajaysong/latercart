@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import './App.css';
 import Wishlist from './Wishlist.js';
 import Navbar from './Navbar.js';
+
 
 
 class App extends Component {
@@ -28,10 +31,13 @@ class App extends Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
       < Navbar />
       <Wishlist />
+      <Route path="/wishlist" component={Wishlist} />
       </div>
+      </Router>
     );
   }
 }

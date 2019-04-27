@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 export default class Product extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class Product extends Component {
       <a href="#">Buy now</a>
       </div>
       <div>
-        <a href="#">Back</a>
+        <Link to="/wishlist">Back</Link>
         </div>
       </div>
     );
