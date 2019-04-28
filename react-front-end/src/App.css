@@ -14,8 +14,8 @@
 } */
 
 .wishlist {
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   margin: 10px;
   background: lightgrey;
   font-size: 11px;
@@ -23,15 +23,15 @@
   float: left;
 }
 
-.wishlist h2 {
+.wishlist h1 {
   text-align: center;
   word-wrap: break-word;
 }
 
 .newWishBtn {
   background: lightgrey;
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   color: purple;
   border: none;
   font-size: 5em;
@@ -44,26 +44,27 @@
   border: 0;
   background: none;
   outline: none;
-  max-width: 140px;
-  font-size: 1.5em;
+  width: 246px;
+  font-size: 2em;
   font-weight: 700;
-  padding-top: 12px;
   text-align: center;
+  padding-top: 12px;
 }
 
 .wishlist input:focus {
   border: solid 1px purple;
   text-align: center;
+  background-color: white;
 }
 
 .deleteButton {
   visibility: hidden;
   float: right;
   margin: 5px;
-  font-size: 14px;
+  font-size: 25px;
   cursor: pointer;
-  color: red;
-  margin-top: 50px;
+  color: rgb(165, 5, 5);
+  margin-top: 220px;
   font-weight: 900;
 }
 
@@ -71,5 +72,8 @@
   visibility: visible;
 }
 
+.saved {
+  font-size: 18px;
+}
 
 

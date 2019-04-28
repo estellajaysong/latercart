@@ -10,22 +10,18 @@ class App extends Component {
     super(props)
     this.state = {
       wishlists: [],
-      editingWishlistId: null,
+      currentWishlistId: null,
+      notification: ''
     }
   }
 
   addWishlist = e => {
-    e.preventDefault()
-    // console.log(e.target.elements.newWishlist.value)
-    // const formData = new FormData()
-    // formData.set('name', 'Fred')
-    // const newWishlistName = e.target.elements.newWishlist.value
     axios.post('/api/wishlists', {wishlist: {name: 'My New Wishlist'}})
     .then(response => {
       console.log(response)
       this.setState({
         wishlists: [response.data, ...this.state.wishlists],
-        editingWishlistId: response.data.id
+        currentWishlistId: response.data.id
       })
     })
     .catch(error => {
@@ -35,9 +31,34 @@ class App extends Component {
 
   enableEditing = (id) => {
     this.setState({
-      editingWishlistId: id},
-      () => { this.name.focus() }
-    )
+      currentWishlistId: id
+    })
+  }
+
+  editWishlistName = e => {
+    e.persist()
+    // if (e.key === 'Enter'){
+      console.log(e.target.value)
+      axios.put(`/api/wishlists/${this.state.currentWishlistId}`, {wishlist: { name: e.target.value }})
+      .then(response => {
+        // console.log(response)
+        const index = this.state.wishlists.findIndex(x => x.id === this.state.currentWishlistId)
+        let wishlistsCopy = JSON.parse(JSON.stringify(this.state.wishlists))
+        wishlistsCopy[index].name = e.target.value
+        this.setState({
+          wishlists: wishlistsCopy,
+          notification: 'New title saved!'
+        })
+
+        setTimeout(() => this.setState({
+          notification: ''
+        }),2000)
+
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    // } 
   }
 
   deleteWishlist = (id) => {
@@ -54,15 +75,11 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/wishlists') // load all the wishlists from rails api
     .then(response => {
-      // handle success
-      // console.log(response.data)// The entire response from the Rails API
-      // console.log(response.data.wishlists.length) // Just the message
       this.setState({
         wishlists: response.data
       })
     })
     .catch(error => {
-      // handle error
       console.log(error)
     }) 
   }
@@ -71,14 +88,15 @@ class App extends Component {
     return (
       <div className="App">
         < Navbar />
+        <div className="saved">{this.state.notification}</div>
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>
           +
         </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
-            this.state.editingWishlistId === wishlist.id ? 
-            <WishlistForm key={wishlist.id} wishlist={wishlist} nameRef= {input => this.name = input}/> :
+            this.state.currentWishlistId === wishlist.id ? 
+            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName}/> :
             <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
           ))}
         </div>

@@ -19,7 +19,7 @@ export default class Wishlist extends Component {
         <span className="deleteButton" onClick={this.deleteWishlist}>
           X
         </span>
-        <h2 onClick={this.editWishlistName} >{this.props.wishlist.name}</h2>
+        <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
       <Product />     
       </div>
     );
