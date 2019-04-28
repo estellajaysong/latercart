@@ -96,8 +96,8 @@ class App extends Component {
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
             this.state.currentWishlistId === wishlist.id ? 
-            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} onDelete={this.deleteWishlist}/> :
-            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing}/> 
+            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} /> :
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
           ))}
         </div>
         </div>
