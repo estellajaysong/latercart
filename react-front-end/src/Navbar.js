@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import './App.css';
+import LoginForm from './LoginForm.js';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -40,23 +40,7 @@ export default class Navbar extends Component {
         <h1>latercart</h1>
         <h1>My lists</h1>
         <h1>User</h1>
-        <button onClick={this.showMenu}>
-          Show menu
-        </button>
-        
-        {
-          this.state.showMenu
-            ? (
-              <div className="menu">
-                <button> Menu item 1 </button>
-                <button> Menu item 2 </button>
-                <button> Menu item 3 </button>
-              </div>
-            )
-            : (
-              null
-            )
-        }
+        <LoginForm />
       </div>
     );
   }
