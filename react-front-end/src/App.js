@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       wishlists: [],
       currentWishlistId: null,
-      notification: ''
+      notification: false
     }
   }
 
@@ -47,12 +47,12 @@ class App extends Component {
         wishlistsCopy[index].name = e.target.value
         this.setState({
           wishlists: wishlistsCopy,
-          notification: 'New title saved!'
+          notification: true
         })
 
         setTimeout(() => this.setState({
-          notification: ''
-        }),2000)
+          notification: false
+        }),3000)
 
       })
       .catch(error => {
@@ -88,16 +88,16 @@ class App extends Component {
     return (
       <div className="App">
         < Navbar />
-        <div className="saved">{this.state.notification}</div>
+        <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>
-          +
+          + <br/> <div className="newWishBtnFont">New Wishlist</div>
         </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
             this.state.currentWishlistId === wishlist.id ? 
-            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName}/> :
-            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
+            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} onDelete={this.deleteWishlist}/> :
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing}/> 
           ))}
         </div>
         </div>

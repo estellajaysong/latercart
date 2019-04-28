@@ -40,6 +40,10 @@
   float: left;
 }
 
+.newWishBtnFont {
+  font-size: 20px;
+}
+
 .wishlist input {
   border: 0;
   background: none;
@@ -68,12 +72,34 @@
   font-weight: 900;
 }
 
+/* .form-deleteButton {
+  visibility: hidden;
+  float: right;
+  margin: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  color: rgb(165, 5, 5);
+  margin-top: 180px;
+  font-weight: 900;
+  z-index: 1;
+} */
+
 .wishlist:hover .deleteButton {
   visibility: visible;
 }
 
-.saved {
-  font-size: 18px;
+.noNotification {
+  transition: 500ms all ease;
+  opacity: 0;
+  will-change: opacity;
+  font-size: 20px;
+}
+
+.showNotification {
+  transition: 200ms all ease;
+  opacity: 1;
+  font-size: 20px;
+  color: purple;
 }
 
 
