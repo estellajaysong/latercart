@@ -8,8 +8,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_email(params[:userInfo][:email])
     if @user.password == params[:userInfo][:password]
       session[:user_id] = @user.id
-      puts session[:user_id]
-      redirect_to '/'
+      render json: @user 
     else
       redirect_to '/login'
     end
