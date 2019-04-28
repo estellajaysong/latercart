@@ -4,7 +4,10 @@ import axios from 'axios';
 export default class ListDropdown extends Component {
   constructor(props) {
     super(props)
-    // this.state = {}
+    this.state = {
+      currentUser: "me",
+      myLists: ["list1", "list2"]
+    }
   }
 
   fetchData = () => {
@@ -21,13 +24,21 @@ export default class ListDropdown extends Component {
   }
 
   //for list in wishlist
+  renderFunction (myList){
+    let lists = this.state.myLists.map(list => {
+        return (<div>
+           {list}
+          </div>)
+    })
+      return lists;
+  }
 
   render() {
     return (
       <div className="dropdown">
         <button className = "dropbtn">My Lists</button>
         <div className="dropdown-content">
-        <a href="#">My First Wishlist </a>
+        <a href="#">{this.renderFunction(this.state.myLists)} </a>
         </div>
       </div>
     );
