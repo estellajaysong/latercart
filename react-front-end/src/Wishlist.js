@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Product from './Product.js';
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 export default class Wishlist extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      // message: 'Click the button to load data!'
-    }
+  editWishlistName = () => {
+    this.props.onEdit(this.props.wishlist.id)
   }
 
-  fetchData = () => {
-    axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
-    .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
-
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
-    }) 
+  deleteWishlist = () => {
+    this.props.onDelete(this.props.wishlist.id)
   }
 
   render() {
     return (
-      <div className="App">
-       <Product />     
+       <Router>
+      <div className="wishlist" >
+        <span className="deleteButton" onClick={this.deleteWishlist}>
+          X
+        </span>
+        <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
+      <Product />
+      <Link to="/product">Product</Link>
+       <Product />
+       <Product />
+       <Route path="/product" component={Product} />
       </div>
+      </Router>
     );
   }
 }
