@@ -13,10 +13,18 @@ export default class Navbar extends Component {
 
   login = e => {
     e.preventDefault()
-    axios.post('/api/login', {userInfo: {
-      email: e.target.elements.email.value, 
-      password: e.target.elements.password.value
-    }})
+    axios('/api/login', {
+      method: "post",
+      data: {userInfo: {
+        email: e.target.elements.email.value, 
+        password: e.target.elements.password.value
+      }},
+      withCredentials: true
+    })
+    // axios.post('/api/login', {userInfo: {
+    //   email: e.target.elements.email.value, 
+    //   password: e.target.elements.password.value
+    // }})
     .then(response => {
       console.log('>>>>>>>>>>>>>',response)
       this.setState({
