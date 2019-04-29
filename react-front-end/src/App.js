@@ -17,7 +17,17 @@ class App extends Component {
   }
 
   addWishlist = e => {
-    axios.post('/api/wishlists', {wishlist: {name: 'My New Wishlist'}})
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios({
+      method: 'post', 
+      url: `/api/wishlists`, 
+      data: {
+        wishlist: { 
+          name: 'My New Wishlist'
+        }
+      },
+      headers: {'Authorization': token }
+    })
     .then(response => {
       console.log(response)
       this.setState({
@@ -40,7 +50,17 @@ class App extends Component {
     e.persist()
     // if (e.key === 'Enter'){
       console.log(e.target.value)
-      axios.put(`/api/wishlists/${this.state.currentWishlistId}`, {wishlist: { name: e.target.value }})
+      let token = "Bearer " + localStorage.getItem("jwt");
+      axios({
+        method: 'put', 
+        url: `/api/wishlists/${this.state.currentWishlistId}`, 
+        data: {
+          wishlist: { 
+            name: e.target.value 
+          }
+        },
+        headers: {'Authorization': token }
+      })
       .then(response => {
         // console.log(response)
         const index = this.state.wishlists.findIndex(x => x.id === this.state.currentWishlistId)
@@ -63,7 +83,12 @@ class App extends Component {
   }
 
   deleteWishlist = (id) => {
-    axios.delete(`/api/wishlists/${id}`)
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios({
+      method: 'delete', 
+      url: `/api/wishlists/${id}`, 
+      headers: {'Authorization': token }
+    })
     .then(response => {
       const index = this.state.wishlists.findIndex(x => x.id === id)
       this.setState({
@@ -74,7 +99,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/wishlists') // load all the wishlists from rails api
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios({
+      method: 'get', 
+      url: '/api/wishlists', 
+      headers: {'Authorization': token }
+    })
     .then(response => {
       this.setState({
         wishlists: response.data
