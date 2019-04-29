@@ -50,3 +50,38 @@ Wishlist.create!({
 Wishlist.create!({
   name: "Apparel"
 })
+Wishlist.create!({
+  name: "Wedding"
+})
+Wishlist.create!({
+  name: "Baby shower"
+})
+
+puts "Creating user-wishlist relationship..."
+
+UserWishlist.create!({
+  user_id:1,
+  wishlist_id:1
+})
+
+UserWishlist.create!({
+  user_id:1,
+  wishlist_id:2
+})
+
+UserWishlist.create!({
+  user_id:2,
+  wishlist_id:3
+})
+
+UserWishlist.create!({
+  user_id:2,
+  wishlist_id:4
+})
+
+UserWishlist.create!({
+  user_id:3,
+  wishlist_id:5
+})
+
+puts "Done!"

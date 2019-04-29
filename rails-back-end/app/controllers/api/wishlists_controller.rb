@@ -1,5 +1,6 @@
 class Api::WishlistsController < ApplicationController
   def index
+    puts ">>>>>>>>>>>>>>>>> #{session[:user_id]}"
     @wishlists = Wishlist.all.order("created_at DESC")
     render json: @wishlists
   end
