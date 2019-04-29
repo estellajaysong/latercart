@@ -84,4 +84,16 @@ UserWishlist.create!({
   wishlist_id:5
 })
 
+puts "Creating products"
+Product.create!({
+  name:"HUDA BEAUTY The New Nude Eyeshadow Palette",
+  url:"https://www.sephora.com/productimages/sku/s2137289-main-Lhero.jpg",
+  img_url: "https://www.sephora.com/productimages/sku/s2137289-main-Lhero.jpg",
+  price: 85,
+  rating: 5,
+  note: "note",
+  wishlist_id: 1
+})
+
+
 puts "Done!"

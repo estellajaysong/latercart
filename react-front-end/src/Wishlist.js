@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import Product from './Product.js';
-//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 export default class Wishlist extends Component {
@@ -22,10 +22,6 @@ export default class Wishlist extends Component {
         </span>
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
       <Product />
-      <Link to="/product">Product</Link>
-       <Product />
-       <Product />
-       <Route path="/product" component={Product} />
       </div>
       </Router>
     );

@@ -18,7 +18,6 @@ class App extends Component {
     }
   }
 
-user-auth
   addWishlist = e => {
     let token = "Bearer " + localStorage.getItem("jwt");
     axios({
