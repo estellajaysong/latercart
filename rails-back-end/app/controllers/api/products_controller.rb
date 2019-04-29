@@ -1,4 +1,8 @@
-class ProductsController < ApplicationController
+class Api::ProductsController < ApplicationController
+  def index
+    @product = Product.find_by(id:1)
+    render json: @product
+  end
 
   def new
     @product = Product.new
@@ -24,9 +28,9 @@ class ProductsController < ApplicationController
       :name,
       :image,
       :price,
-      :category_id,
-      :rating,
-      :notes
+      # :category_id,
+      # :rating,
+      # :notes
     )
   end
 end

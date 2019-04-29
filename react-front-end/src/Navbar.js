@@ -78,7 +78,7 @@ export default class Navbar extends Component {
           <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
           <Route path="/logout/" render={(props) => <Logout {...props} reloadPage={this.props.reloadPage} />}  />
         </div>
-      </Router>
+      </Router>)
 
   }
 }
