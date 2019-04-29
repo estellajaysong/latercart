@@ -115,10 +115,28 @@ class App extends Component {
     }) 
   }
 
+  reloadPage = () => {
+    console.log('reloading.......')
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios({
+      method: 'get', 
+      url: '/api/wishlists', 
+      headers: {'Authorization': token }
+    })
+    .then(response => {
+      this.setState({
+        wishlists: response.data
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    }) 
+  }
+
   render() {
     return (
       <div className="App">
-        < Navbar />
+        < Navbar reloadPage={this.reloadPage}/>
         <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>
