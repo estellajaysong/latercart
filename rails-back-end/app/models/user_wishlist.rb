@@ -1,0 +1,3 @@
+class UserWishlist < ApplicationRecord
+  
+end

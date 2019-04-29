@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ListDropdown from './ListDropdown.js'
-// import './App.css';
+
+import LoginForm from './LoginForm.js';
+import Logout from './Logout.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props)
     this.state = {
       // message: 'Click the button to load data!'
-      showMenu: false
+      showMenu: false, 
+      currentUserEmail: null
     }
     this.showMenu = this.showMenu.bind(this);
 
@@ -35,17 +39,47 @@ export default class Navbar extends Component {
     });
   }
 
+  login = e => {
+    console.log('here')
+    e.preventDefault()
+    axios('/api/user_token', {
+      method: "post",
+      data: {auth: {
+          email: e.target.elements.email.value, 
+          password: e.target.elements.password.value
+        }}
+    })
+    .then(response => {
+      localStorage.setItem("jwt", response.data.jwt);
+      // console.log('>>>>>>>>>>>>>',JSON.parse(response.config.data).auth.email)
+      this.setState({
+        // currentUserId: response.data.id,
+        // userName: response.data.username,
+        currentUserEmail: JSON.parse(response.config.data).auth.email
+      })
+      // load the wishlists after login
+      this.props.reloadPage()
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
   render() {
     return (
-      <div className="navbar">
-        <h1>latercart</h1>
-        <wrapper>
-        < ListDropdown />
-        < ListDropdown />
-        </wrapper>
-       
-      </div>
-    );
+      <Router>
+        <div className="navbar">
+          <h1>latercart</h1>
+          <h1>My lists</h1>
+          <h1>User</h1>
+          <h3>{this.state.currentUserEmail}</h3>
+          <Link to="/login/">Login</Link>
+          <Link to="/logout/">Logout</Link>
+          <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
+          <Route path="/logout/" render={(props) => <Logout {...props} reloadPage={this.props.reloadPage} />}  />
+        </div>
+      </Router>
+
   }
 }
 
