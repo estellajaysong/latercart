@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Wishlist from './Wishlist.js'
 
 export default class ListDropdown extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentUser: "me",
-      myLists: ["list1", "list2"]
+      currentUser: "",
+      myLists: [] 
     }
   }
 
   fetchData = () => {
     axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
     .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
-
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
+      this.setState({currentUser:response.data.currentUser,
+      myLists: response.data.myLists})
     }) 
   }
 
   //for list in wishlist
   renderFunction (myList){
+    let key = 0;
     let lists = this.state.myLists.map(list => {
-        return (<div>
+      key +=1
+        return (<div key={key}>
            {list}
           </div>)
     })
@@ -35,12 +34,15 @@ export default class ListDropdown extends Component {
 
   render() {
     return (
+      <Router>
       <div className="dropdown">
         <button className = "dropbtn">My Lists</button>
         <div className="dropdown-content">
-        <a href="#">{this.renderFunction(this.state.myLists)} </a>
+        <Link to="/wishlist1">{this.renderFunction(this.state.myLists)} </Link>
         </div>
+        <Route path="wishlist1" component={Wishlist}/>
       </div>
+      </Router>
     );
   }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import Wishlist from './Wishlist.js';
 import Navbar from './Navbar.js';
@@ -17,7 +16,7 @@ class App extends Component {
   }
 
   fetchData = () => {
-    axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
+    axios.get('/api/list') // You can simply make your requests to "/api/whatever you want"
     .then((response) => {
       // handle success
       console.log(response.data) // The entire response from the Rails API
@@ -31,13 +30,10 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
       <div className="App">
       < Navbar />
       <Wishlist />
-      <Route path="/wishlist" component={Wishlist} />
       </div>
-      </Router>
     );
   }
 }
