@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm.js';
+import Logout from './Logout.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Navbar extends Component {
@@ -43,7 +44,9 @@ export default class Navbar extends Component {
           <h1>My lists</h1>
           <h1>User</h1>
           <Link to="/login/">Login</Link>
+          <Link to="/logout/">Logout</Link>
           <Route path="/login/" component={LoginForm} />
+          <Route path="/logout/" component={Logout} />
         </div>
       </Router>
     );

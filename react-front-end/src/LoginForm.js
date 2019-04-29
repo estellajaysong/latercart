@@ -26,12 +26,14 @@ export default class Navbar extends Component {
     // }})
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
-      console.log('>>>>>>>>>>>>>',response)
+      // console.log('>>>>>>>>>>>>>',JSON.parse(response.config.data).auth.email)
       this.setState({
-        currentUserId: response.data.id,
-        userName: response.data.username,
-        userEmail: response.data.email
+        // currentUserId: response.data.id,
+        // userName: response.data.username,
+        userEmail: JSON.parse(response.config.data).auth.email
       })
+      // send the user to the home path when they log in
+      this.props.history.push("/")
     })
     .catch(error => {
       console.log(error)
@@ -41,7 +43,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="login-container">
-        <div>{this.state.userName}</div>
+        <div>{this.state.userEmail}</div>
         <form onSubmit={this.login}> 
           <input className='input' type="text" name="email" placeholder='example@example.com' />
           <input className='input' type="text" name="password" placeholder='Your Password' />
