@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -36,12 +37,15 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <div className="Navbar">
-        <h1>latercart</h1>
-        <h1>My lists</h1>
-        <h1>User</h1>
-        <LoginForm />
-      </div>
+      <Router>
+        <div className="Navbar">
+          <h1>latercart</h1>
+          <h1>My lists</h1>
+          <h1>User</h1>
+          <Link to="/login/">Login</Link>
+          <Route path="/login/" component={LoginForm} />
+        </div>
+      </Router>
     );
   }
 }

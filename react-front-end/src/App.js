@@ -3,7 +3,8 @@ import axios from 'axios';
 import './App.css';
 import Navbar from './Navbar.js';
 import Wishlist from './Wishlist.js';
-import WishlistForm from './WishlistForm'
+import WishlistForm from './WishlistForm';
+
 
 class App extends Component {
   constructor(props) {
