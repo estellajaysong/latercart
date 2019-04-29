@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   namespace :api do
     resources :wishlists
     resources :users, only: [:new, :create]
-
+    
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
+    post '/user_token' => 'user_token#create'
   end
 end

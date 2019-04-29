@@ -6,8 +6,8 @@ class Api::SessionsController < ApplicationController
   def create
     # If the user exists AND the password entered is correct.
     # puts params
-    @user = User.find_by_email(params[:userInfo][:email])
-    if @user.password == params[:userInfo][:password]
+    @user = User.find_by_email(params[:auth][:email])
+    if @user.password == params[:auth][:password]
       session[:user_id] = @user.id
       render json: @user 
     else

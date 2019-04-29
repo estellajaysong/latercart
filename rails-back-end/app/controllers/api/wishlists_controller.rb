@@ -1,4 +1,5 @@
 class Api::WishlistsController < ApplicationController
+  before_action :authenticate_user
   def index
     puts ">>>>>>>>>>>>>>>>> #{session[:user_id]}"
     @wishlists = Wishlist.all.order("created_at DESC")
