@@ -4,7 +4,6 @@ class Api::WishlistsController < ApplicationController
     if current_user
       puts "user id>>>>>>>>>>>>>>>#{current_user.id}"
       @wishlists = Wishlist.joins(:user_wishlists).where('"user_wishlists"."user_id" IN (?)', current_user.id)
-      # @wishlists = Wishlist.all.order("created_at DESC")
       render json: @wishlists
     else
       redirect_to 'api/login'
@@ -14,6 +13,14 @@ class Api::WishlistsController < ApplicationController
 
   def create
     @newWishlist = Wishlist.create(wishlist_params)
+
+    if @newWishlist.save
+      @user = current_user
+      @user.user_wishlists.create({user_id: @user.id, wishlist: @newWishlist})
+    else
+      redirect_to 'api/login'
+    end
+    
     render json: @newWishlist
   end
 
