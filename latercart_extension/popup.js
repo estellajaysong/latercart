@@ -6,15 +6,12 @@ chrome.storage.sync.get(['product'], function ({ product }) {
   popProduct.img_url = product.image
   popProduct.price = product.price
 
-  document.getElementById('title').innerHTML = popProduct.name
-  document.getElementById('price').innerHTML = popProduct.price
-  document.getElementById('img').setAttribute("src", "https://www.sephora.com" + popProduct.img_url)
-  // alert(popProduct.img)
+  $( "#title" ).html(popProduct.name)
+  $( "#price").html(popProduct.price)
+  $( "#img" ).attr("src", "https://www.sephora.com" + popProduct.img_url)
 
-  document.getElementById("confirm").addEventListener("click", function () {
-
-    console.log(popProduct)
-
+  // post new product on confirm
+  $( "#confirm" ).click(function () {
     axios.post('http://localhost:3000/api/products#create', 
     {name: popProduct.name, price: popProduct.price, img_url: popProduct.img_url, wishlist_id: 1})
       .then(function (response) {
@@ -23,6 +20,17 @@ chrome.storage.sync.get(['product'], function ({ product }) {
       .catch(function (error) {
         console.log(error);
       });
+  })
+
+  $( "#editName").click(() => {
+    let placeholder = popProduct.name
+    let input = `<form class='editName'><input type='text' placeholder='${placeholder}' name='name'></form>`
+    $( "#title").html(input)
+    $( ".editName").submit((e) => {
+    e.preventDefault()
+    console.log($( ".editName").text())
+    console.log(e)
+    console.log("DID IT")})
   })
 
 })   

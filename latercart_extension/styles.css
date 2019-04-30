@@ -1,0 +1,14 @@
+body {
+  width: 350px;
+  height: 500px;
+}
+
+.editIcon {
+  width: 20px;
+  height: 20px;
+  display: inline;
+}
+
+#title, #img, #price {
+  display: inline;
+}
