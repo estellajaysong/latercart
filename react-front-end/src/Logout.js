@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 const Logout = (props) => {
   localStorage.removeItem('jwt');
   // props.reloadPage()
-  return <Redirect to='/' />
+  return <Redirect to='/login' />
 }
 
 export default Logout;

@@ -63,6 +63,7 @@ export default class Navbar extends Component {
         currentUserEmail: JSON.parse(response.config.data).auth.email
       })
       // load the wishlists after login
+      
       this.props.reloadPage()
     })
     .catch(error => {
