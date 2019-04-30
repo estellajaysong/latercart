@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import LoginForm from './LoginForm.js';
 import Logout from './Logout.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
+
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -73,7 +75,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <Router>
-        <div className="Navbar">
+        <div className="navbar">
           <h1>latercart</h1>
           <h1>My lists</h1>
           <h1>user</h1>
@@ -83,7 +85,9 @@ export default class Navbar extends Component {
           <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
           <Route path="/logout/" render={(props) => <Logout {...props} reloadPage={this.props.reloadPage} />}  />
         </div>
-      </Router>
-    );
+      </Router>)
+
   }
 }
+
+

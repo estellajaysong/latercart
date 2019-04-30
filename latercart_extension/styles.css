@@ -1,0 +1,33 @@
+#banner {
+  display: block;
+  position: fixed; 
+  left: 0px;
+  top: 0px;
+  color: white;
+  font-size: 20px;
+  background-color: #653c53;
+  width: 100vw;
+  height: 30px;
+  margin-bottom: 30px
+  }
+
+body {
+  margin-top: 35px;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+}
+
+.editIcon {
+  width: 20px;
+  height: 20px;
+  display: inline;
+}
+
+#title, #img, #price {
+  display: inline;
+}
+
+#img {
+  max-width: 150px;
+}
