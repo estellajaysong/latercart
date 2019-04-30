@@ -39,3 +39,4 @@ chrome.storage.sync.get(['product'], function ({ product }) {
 
   
   // send request to http server
+  // <link rel="canonical" href="https://www.sephora.com/ca/en/product/power-trio-digital-bundle-P444308">
