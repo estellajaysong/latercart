@@ -3,6 +3,7 @@ import axios from 'axios';
 import LoginForm from './LoginForm.js';
 import Logout from './Logout.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -50,9 +51,11 @@ export default class Navbar extends Component {
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
       console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
+      let decodedToken = jwtDecode(response.data.jwt)
+      console.log(decodedToken)
       this.setState({
-        // currentUserId: response.data.id,
-        // userName: response.data.username,
+        currentUserId: decodedToken.sub,
+        userName: decodedToken.name,
         currentUserEmail: JSON.parse(response.config.data).auth.email
       })
       // load the wishlists after login
@@ -70,7 +73,7 @@ export default class Navbar extends Component {
           <h1>latercart</h1>
           <h1>My lists</h1>
           <h1>User</h1>
-          <h3>{this.state.currentUserEmail}</h3>
+          <h3>{this.state.userName}</h3>
           <Link to="/login/">Login</Link>
           <Link to="/logout/">Logout</Link>
           <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
