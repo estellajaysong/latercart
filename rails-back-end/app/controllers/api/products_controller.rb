@@ -1,7 +1,7 @@
 class Api::ProductsController < ApplicationController
   def index
-
-    @product = Product.find params[:id]
+    puts id
+    @product = Product.find_by params[:id]
     render json: @product
   end
 

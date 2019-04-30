@@ -13,9 +13,9 @@ export default class Product extends Component {
   }
 
   componentDidMount(){
-      axios.get('/api/products#index',{params: {id: this.state.product.id}}) // You can simply make your requests to "/api/whatever you want"
+      axios.get(`/api/products/${this.state.product.id}`) // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
-        // console.log(response.data) // The entire response from the Rails API  
+        console.log(response.data) // The entire response from the Rails API  
         this.setState({
           product: response.data
         });
@@ -33,16 +33,16 @@ export default class Product extends Component {
       <div className="product">
       <div>
       <Link to="/product">Product</Link>
-      <h4>{this.state.product.name}</h4>
-      <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
+      <h4>{this.props.product.name}</h4>
+      <img className="product-img" src={this.props.product.img_url} alt={this.props.product.name} />
       </div>
       <Route path="/product" component={Product} />
       <div>
-      <p>Price: ${this.state.product.price}</p>
-      <p>Rating: {this.state.product.rating}</p>
-      <p>Notes: {this.state.product.notes}</p>
-      <p>Date Added: {this.state.product.created_at}</p>
-      <a href={this.state.product.url}>Buy now</a>
+      <p>Price: ${this.props.product.price}</p>
+      <p>Rating: {this.props.product.rating}</p>
+      <p>Notes: {this.props.product.notes}</p>
+      <p>Date Added: {this.props.product.created_at}</p>
+      <a href={this.props.product.url}>Buy now</a>
       </div>
       <div>
         <Link to="/wishlist">Back</Link>
