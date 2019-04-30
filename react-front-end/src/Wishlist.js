@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import Product from './Product.js';
-// import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 export default class Wishlist extends Component {
@@ -15,13 +15,15 @@ export default class Wishlist extends Component {
 
   render() {
     return (
+       <Router>
       <div className="wishlist" >
         <span className="deleteButton" onClick={this.deleteWishlist}>
           X
         </span>
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
-      <Product />     
+      <Product />
       </div>
+      </Router>
     );
   }
 }
