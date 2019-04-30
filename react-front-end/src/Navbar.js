@@ -9,20 +9,19 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // message: 'Click the button to load data!'
       showMenu: false, 
+      currentUserId: null,
+      currentUserName: null,
       currentUserEmail: null
     }
     this.showMenu = this.showMenu.bind(this);
-
   }
 
   fetchData = () => {
-    axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
+    axios.get('/api/data') 
     .then((response) => {
       // handle success
       console.log(response.data) // The entire response from the Rails API
-
       console.log(response.data.message) // Just the message
       this.setState({
         message: response.data.message
@@ -39,7 +38,6 @@ export default class Navbar extends Component {
   }
 
   login = e => {
-    console.log('here')
     e.preventDefault()
     axios('/api/user_token', {
       method: "post",
@@ -50,12 +48,12 @@ export default class Navbar extends Component {
     })
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
-      console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
+      //console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
       let decodedToken = jwtDecode(response.data.jwt)
-      console.log(decodedToken)
+      //console.log(decodedToken)
       this.setState({
         currentUserId: decodedToken.sub,
-        userName: decodedToken.name,
+        currentUserName: decodedToken.name,
         currentUserEmail: JSON.parse(response.config.data).auth.email
       })
       // load the wishlists after login
@@ -73,7 +71,7 @@ export default class Navbar extends Component {
           <h1>latercart</h1>
           <h1>My lists</h1>
           <h1>User</h1>
-          <h3>{this.state.userName}</h3>
+          <h3>{this.state.currentUserName}</h3>
           <Link to="/login/">Login</Link>
           <Link to="/logout/">Logout</Link>
           <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
