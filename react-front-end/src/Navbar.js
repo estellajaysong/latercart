@@ -12,12 +12,18 @@ export default class Navbar extends Component {
     super(props)
     this.state = {
       showMenu: false, 
-      currentUserId: null,
-      currentUserName: null,
+      currentUserId: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).sub : null,
+      currentUserName: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).name : null,
       currentUserEmail: null
     }
     this.showMenu = this.showMenu.bind(this);
   }
+
+  // getCurrentUser = () => {
+  //   localStorage.getItem("jwt") ? 
+  //   jwtDecode(localStorage.getItem("jwt")) :
+  //   null
+  // }
 
   fetchData = () => {
     axios.get('/api/data') 
@@ -59,6 +65,7 @@ export default class Navbar extends Component {
         currentUserEmail: JSON.parse(response.config.data).auth.email
       })
       // load the wishlists after login
+      
       this.props.reloadPage()
     })
     .catch(error => {
@@ -72,7 +79,7 @@ export default class Navbar extends Component {
         <div className="navbar">
           <h1>latercart</h1>
           <h1>My lists</h1>
-          <h1>User</h1>
+          <h1>user</h1>
           <h3>{this.state.currentUserName}</h3>
           <Link to="/login/">Login</Link>
           <Link to="/logout/">Logout</Link>

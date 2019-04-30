@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Product from './Product.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-
 export default class Wishlist extends Component {
   constructor(props){
     super(props)
@@ -14,7 +12,6 @@ export default class Wishlist extends Component {
   componentDidMount(){
     axios.get(`/api/wishlists/${this.props.wishlist.id}`)
     .then((res) => {
-      console.log(res.data)
       this.setState({
         products: res.data
       })
@@ -32,8 +29,6 @@ export default class Wishlist extends Component {
     this.props.onDelete(this.props.wishlist.id)
   }
 
-  
-
   render() {
     return (
        <Router>
@@ -42,9 +37,8 @@ export default class Wishlist extends Component {
           X
         </span>
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
-        <h1 onClick={this.getProduct}> getprod</h1>
         {this.state.products.map(product => (
-        <Product product={product}/>
+        <Product product={product} key = {product.id}/>
       ))}
       </div>
       </Router>
