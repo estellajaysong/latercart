@@ -49,7 +49,7 @@ export default class Navbar extends Component {
     })
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
-      // console.log('>>>>>>>>>>>>>',JSON.parse(response.config.data).auth.email)
+      console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
       this.setState({
         // currentUserId: response.data.id,
         // userName: response.data.username,

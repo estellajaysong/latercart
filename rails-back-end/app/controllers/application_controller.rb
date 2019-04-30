@@ -9,4 +9,10 @@ class ApplicationController < ActionController::API
 
   # puts "=============== #{@current_user}"
 
+
+  
+  # def authenticate_api_user
+  #   authenticate_for Api::User
+  # end
+
 end
