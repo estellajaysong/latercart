@@ -1,5 +1,6 @@
 class Api::ProductsController < ApplicationController
   def index
+
     @product = Product.find params[:id]
     render json: @product
   end
@@ -13,8 +14,10 @@ class Api::ProductsController < ApplicationController
 
     if @product.save
       # how does this work with the chrome extension
+      puts "product saved"
     else
       # show that there was an error
+      puts "product not saved"
     end
   end
 
@@ -28,6 +31,7 @@ class Api::ProductsController < ApplicationController
       :name,
       :img_url,
       :price,
+      :wishlist_id
       # :category_id,
       # :rating,
       # :notes
