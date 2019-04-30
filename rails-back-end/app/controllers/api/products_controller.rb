@@ -1,6 +1,7 @@
 class Api::ProductsController < ApplicationController
   def index
-    @product = Product.find_by(id:2)
+
+    @product = Product.find params[:id]
     render json: @product
   end
 
@@ -28,7 +29,7 @@ class Api::ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(
       :name,
-      :image,
+      :img_url,
       :price,
       :wishlist_id
       # :category_id,

@@ -13,7 +13,7 @@ export default class Product extends Component {
   }
 
   componentDidMount(){
-      axios.get('/api/products#index') // You can simply make your requests to "/api/whatever you want"
+      axios.get('/api/products#index',{params: {id: this.state.product.id}}) // You can simply make your requests to "/api/whatever you want"
       .then((response) => {
         // console.log(response.data) // The entire response from the Rails API  
         this.setState({
