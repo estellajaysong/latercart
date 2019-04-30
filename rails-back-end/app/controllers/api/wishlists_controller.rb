@@ -1,5 +1,5 @@
 class Api::WishlistsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: :show
   def index
     if current_user
       puts "user id>>>>>>>>>>>>>>>#{current_user.id}"
@@ -9,6 +9,12 @@ class Api::WishlistsController < ApplicationController
       puts "Unable to pull the wishlist before user login"
     end
     
+  end
+
+  def show
+    # @wishlist = Wishlist.find_by params[:id]
+    @products = Product.where(wishlist_id: params[:id])
+    render json: @products
   end
 
   def create
