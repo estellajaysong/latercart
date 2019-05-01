@@ -116,3 +116,13 @@
   color: purple;
 }
 
+.login-container input {
+  width: 600px;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  border: solid 1px purple;
+  text-align: center;
+  background-color: white;
+}
+

@@ -62,10 +62,13 @@ export default class LoginForm extends Component {
     return (
       <div className="App">
       < Navbar/>
-        <div className="login-container">      
+        <div className="login-container">   
+        <br/><br/>   
           <form onSubmit={this.login}> 
             <input className='input' type="text" name="email" placeholder='example@example.com' />
+            <br/><br/>
             <input className='input' type="text" name="password" placeholder='Your Password' />
+            <br/><br/>
             <button type='submit' className="loginBtn" >
               Login 
             </button>

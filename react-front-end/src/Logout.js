@@ -5,6 +5,7 @@ const Logout = (props) => {
   localStorage.removeItem('jwt');
   // props.reloadPage()
   return <Redirect to='/' />
+  window.location.reload();
 }
 
 export default Logout;
