@@ -76,9 +76,7 @@ UserWishlist.create!({
 
 UserWishlist.create!({
   user_id:2,
-  wishlist_id:4
-})
-
+  wishlist
 UserWishlist.create!({
   user_id:3,
   wishlist_id:5
@@ -93,6 +91,13 @@ Product.create!({
   rating: 5,
   note: "note",
   wishlist_id: 1
+})
+
+SiteSelector.create!({
+  site_name: "https://www.ikea.com",
+  title_tag: "#name",
+  price_tag: "#price1",
+  img_tag: "#productImg"
 })
 
 

@@ -1,4 +1,4 @@
 class UserWishlist < ApplicationRecord
   belongs_to :user 
-  belongs_to :wishlsit 
+  belongs_to :wishlist 
 end

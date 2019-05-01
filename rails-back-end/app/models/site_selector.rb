@@ -1,0 +1,3 @@
+class SiteSelector < ApplicationRecord
+  
+end

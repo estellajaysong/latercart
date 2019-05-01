@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :wishlists
     resources :users, only: [:new, :create]
     resources :products, only: [:index, :new, :create]
+    resources :site_selectors
     
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
