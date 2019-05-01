@@ -11,7 +11,6 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showMenu: false, 
       currentUserId: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).sub : null,
       currentUserName: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).name : null,
       currentUserEmail: null
