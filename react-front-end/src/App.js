@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './Navbar.js';
 import Wishlist from './Wishlist.js';
 import WishlistForm from './WishlistForm';
+import LoginForm from './LoginForm.js';
 
 
 
@@ -137,7 +138,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      localStorage.getItem("jwt") ? 
+      (<div className="App">
         < Navbar reloadPage={this.reloadPage}/>
         <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
@@ -152,7 +154,9 @@ class App extends Component {
           ))}
         </div>
         </div>
-      </div>
+      </div>) 
+      :
+      (<LoginForm />)
     );
   }
 }

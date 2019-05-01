@@ -5,7 +5,7 @@ export default class ShareForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+      sharedWith: []
     }
   }
 
@@ -36,6 +36,32 @@ export default class ShareForm extends Component {
     }) 
   }
 
+  componentDidMount() {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios({
+      method: 'get', 
+      url: '/api/user_wishlists', 
+      params: {
+        wishlistId: this.props.wishlist.id
+      },
+      headers: {'Authorization': token }
+    })
+    .then(response => {
+      let emails = []
+      for(let i of response.data){
+        emails.push(i.user.email)
+      }
+      console.log(emails)
+      this.setState({
+        sharedWith: emails
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    }) 
+
+  }
+
   render() {
     return (
       <div className="share-container">      
@@ -45,6 +71,12 @@ export default class ShareForm extends Component {
             Share 
           </button>
         </form>
+        <div>
+          Shared With <br/>
+          {this.state.sharedWith.map(email => (
+            <li>{email}</li>
+          ))}
+        </div>
       </div>
     )
   }

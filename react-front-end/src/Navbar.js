@@ -16,34 +16,7 @@ export default class Navbar extends Component {
       currentUserName: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).name : null,
       currentUserEmail: null
     }
-    // this.showMenu = this.showMenu.bind(this);
   }
-
-  // // getCurrentUser = () => {
-  // //   localStorage.getItem("jwt") ? 
-  // //   jwtDecode(localStorage.getItem("jwt")) :
-  // //   null
-  // // }
-
-  // fetchData = () => {
-  //   axios.get('/api/data') 
-  //   .then((response) => {
-  //     // handle success
-  //     console.log(response.data) // The entire response from the Rails API
-  //     console.log(response.data.message) // Just the message
-  //     this.setState({
-  //       message: response.data.message
-  //     });
-  //   }) 
-  // }
-
-  // showMenu(event) {
-  //   event.preventDefault();
-    
-  //   this.setState({
-  //     showMenu: true,
-  //   });
-  // }
 
   login = e => {
     e.preventDefault()
