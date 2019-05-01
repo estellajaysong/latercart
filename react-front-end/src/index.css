@@ -76,9 +76,9 @@ code {
   max-width: 100px;
 }
 
-.wishlist {
+/* .wishlist {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
+} */
