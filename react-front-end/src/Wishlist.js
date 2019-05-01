@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Product from './Product.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 export default class Wishlist extends Component {
   constructor(props){
     super(props)
@@ -31,7 +31,6 @@ export default class Wishlist extends Component {
 
   render() {
     return (
-       <Router>
       <div className="wishlist" >
         <span className="deleteButton" onClick={this.deleteWishlist}>
           X
@@ -41,7 +40,6 @@ export default class Wishlist extends Component {
         <Product product={product} key = {product.id}/>
       ))}
       </div>
-      </Router>
     );
   }
 }

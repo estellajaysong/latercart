@@ -3,9 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import BigProduct from './BigProduct';
+import Wishlist from './Wishlist'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function getIndex (pathname){
+  let index = pathname.split("/")
+  return (index[2])
+}
+
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+ReactDOM.render(window.location.pathname==="/" ? <App/> 
+:window.location.pathname.startsWith("/product/") ? <BigProduct id={getIndex(window.location.pathname)} /> 
+:  <Wishlist/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
