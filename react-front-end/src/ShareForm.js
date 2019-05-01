@@ -72,10 +72,13 @@ export default class ShareForm extends Component {
           </button>
         </form>
         <div>
-          Shared With <br/>
-          {this.state.sharedWith.map(email => (
-            <li>{email}</li>
-          ))}
+          {this.state.sharedWith.length >= 1 ?
+          (<div >Shared With <br/>
+            {this.state.sharedWith.map(email => (
+              <li>{email}</li>
+            ))} </div>): null
+           }
+          
         </div>
       </div>
     )

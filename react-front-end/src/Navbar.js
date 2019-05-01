@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-
 // import LoginForm from './LoginForm.js';
 // import Logout from './Logout.js';
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -47,7 +46,6 @@ export default class Navbar extends Component {
 
   logout = () => {
     localStorage.removeItem('jwt');
-    // props.reloadPage()
     window.location.reload();
   }
 
