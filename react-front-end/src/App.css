@@ -72,6 +72,16 @@
   font-weight: 900;
 }
 
+.shareButton {
+  visibility: hidden;
+  float: left;
+  margin: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  color: purple;
+  margin-top: 220px;
+  font-weight: 900;
+}
 /* .form-deleteButton {
   visibility: hidden;
   float: right;
@@ -85,6 +95,10 @@
 } */
 
 .wishlist:hover .deleteButton {
+  visibility: visible;
+}
+
+.wishlist:hover .shareButton {
   visibility: visible;
 }
 
@@ -102,4 +116,13 @@
   color: purple;
 }
 
+.login-container input {
+  width: 600px;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  border: solid 1px purple;
+  text-align: center;
+  background-color: white;
+}
 

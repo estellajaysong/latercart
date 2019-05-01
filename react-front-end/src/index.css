@@ -77,11 +77,12 @@ code {
   height: auto;
 }
 
-.wishlist {
+/* .wishlist {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+
 }
 
 .bigproduct{
@@ -91,3 +92,6 @@ code {
   border: 2px solid grey;
 
 }
+
+} */
+
