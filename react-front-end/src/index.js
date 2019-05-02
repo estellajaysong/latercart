@@ -14,7 +14,7 @@ function getIndex (pathname){
 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 ReactDOM.render(window.location.pathname==="/" ? <App/> 
-:window.location.pathname.startsWith("/product/") ? <BigProduct id={getIndex(window.location.pathname)} /> 
+:window.location.pathname.startsWith("/products/") ? <BigProduct id={getIndex(window.location.pathname)} /> 
 : window.location.pathname.startsWith("/wishlists/") ? <BigWishlist id={getIndex(window.location.pathname)} />
 : <Wishlist/>, document.getElementById('root'));
 

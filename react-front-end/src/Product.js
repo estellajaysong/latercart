@@ -4,9 +4,9 @@ import BigProduct from './BigProduct';
 // import Wishlist from './Wishlist.js'
 // import ReactDOM from 'react-dom';
 
-const Child = ({match}) => (
-  <BigProduct id={match.params}/>
-)
+// const Child = ({match}) => (
+//   <BigProduct id={match.params}/>
+// )
 
 export default class Product extends Component {
   
@@ -17,9 +17,9 @@ export default class Product extends Component {
   render() {
     return (<Router>
       <div className="product">
-      <Link to={`/product/${this.props.product.id}`} >{this.props.product.name}</Link>
+      <Link to={`/products/${this.props.product.id}`} >{this.props.product.name}</Link>
       <div><img className="product-img" src={this.props.product.img_url} alt={this.props.product.name} /></div>
-      <Route path="/product/:id" component={Child} />
+      {/* <Route path="/product/:id" component={Child} /> */}
       </div>
       </Router>)
       

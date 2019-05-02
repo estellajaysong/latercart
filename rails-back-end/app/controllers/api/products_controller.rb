@@ -1,13 +1,14 @@
 class Api::ProductsController < ApplicationController
-  def index
-    puts "index"
-    @product = Product.find_by params[:id]
-    render json: @product
-  end
+  # def index
+  #   puts "index"
+  #   @product = Product.find_by params[:id]
+  #   render json: @product
+  # end
 
   def show
     puts "show"
-    @product = Product.find_by params[:id]
+    puts params[:id]
+    @product = Product.find params[:id]
     render json: @product
   end
 

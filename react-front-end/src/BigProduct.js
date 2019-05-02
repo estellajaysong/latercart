@@ -15,6 +15,8 @@ export default class BigProduct extends Component {
 
     axios.get(`/api/products/${this.props.id}`)
     .then((res) => {
+      let id = this.props.id
+      console.log(id)
       this.setState({
         product: res.data
       })
