@@ -48,14 +48,14 @@ export default class Wishlist extends Component {
           <Product product={product} key = {product.id}/>
         ))}
         <footer>
-        <span className="shareButton" onClick={this.toggleShare}>
-          Share
-        </span>
-        {this.state.showShareForm ?  <ShareForm wishlist={this.props.wishlist}/> : null} 
-        {this.state.showDelete ? 
-        <span className="deleteButton" onClick={this.deleteWishlist}>
-          X
-        </span> : null}
+          <span className="shareButton" onClick={this.toggleShare}>
+            Share
+          </span>
+          {this.state.showShareForm ?  <ShareForm wishlist={this.props.wishlist}/> : null} 
+          {this.state.showDelete ? 
+          <span className="deleteButton" onClick={this.deleteWishlist}>
+            X
+          </span> : null}
         </footer>
       </div>
     );
