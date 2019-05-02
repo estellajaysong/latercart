@@ -5,7 +5,8 @@ export default class ShareForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sharedWith: []
+      sharedWith: [],
+      sendToEmail: null
     }
   }
 
@@ -28,7 +29,7 @@ export default class ShareForm extends Component {
     .then(response => {
       console.log(response)
       // this.setState({
-      //   wishlists: response.data
+      //   sendToEmail: null
       // })
     })
     .catch(error => {
