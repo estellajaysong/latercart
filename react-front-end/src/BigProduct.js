@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Wishlist from './Wishlist.js'
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Navbar from './Navbar.js';
 import axios from 'axios';
 
@@ -17,32 +16,30 @@ export default class BigProduct extends Component {
     axios.get(`/api/wishlists/${this.props.id}`)
     .then((res) => {
       this.setState({
-        product: res.data
+        product: res.data[0]
       })
     })
     .catch(err => {
       console.log(err)
     })
- 
+
   }
 
   render() {
     return (
       <Router>
         <Navbar/>
-        {this.state.product.map(prod=> (
-      <div className="bigproduct" key={prod.name}>
+       
+      <div className="bigproduct" key={this.state.product.name}>
       <Link to="/wishlist">Back</Link>
-      <Route path="/wishlist" component={Wishlist} />
-      <h1>{prod.name}</h1>
-      <img className="product-img" src={prod.img_url} alt={prod.name} />
-      <p>Price: ${prod.price}</p>
-      <p>Rating: {prod.rating}</p>
-      <p>Notes: {prod.notes}</p>
-      <p>Date Added: {prod.created_at}</p>
-      <a href={prod.url}>Buy now</a>
+      <h1>{this.state.product.name}</h1>
+      <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
+      <p>Price: {this.state.product.price}</p>
+      <p>Rating: {this.state.product.rating}</p>
+      <p>Notes: {this.state.product.notes}</p>
+      <p>Date Added: {this.state.product.created_at}</p>
+      <a href={this.state.product.url}>Buy now</a>
       </div>
-        ))}
       
       </Router>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 // import Wishlist from './Wishlist.js'
 // import BigProduct from './BigProduct.js'
 // import ReactDOM from 'react-dom';
