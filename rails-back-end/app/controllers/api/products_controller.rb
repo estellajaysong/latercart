@@ -19,6 +19,12 @@ class Api::ProductsController < ApplicationController
   end
 
   def destroy
+    puts "in destroy"
+    @delProduct = Product.find(params[:id])
+    if @delProduct.destroy
+    else
+      render json: @delProduct.errors
+    end
   end
 
   private
