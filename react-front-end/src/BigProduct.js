@@ -31,7 +31,7 @@ export default class BigProduct extends Component {
         <Navbar/>
        
       <div className="bigproduct" key={this.state.product.name}>
-      <Link to="/wishlist">Back</Link>
+      <Link to="/wishlists/1">Back</Link>
       <h1>{this.state.product.name}</h1>
       <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
       <p>Price: {this.state.product.price}</p>

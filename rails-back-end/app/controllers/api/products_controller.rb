@@ -18,6 +18,12 @@ class Api::ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product = Product.find(params[:id])
+    @product.update_attributes(product_params)
+    render json: @wishlist
+  end
+
   def destroy
     puts "in destroy"
     @delProduct = Product.find(params[:id])
