@@ -7,15 +7,14 @@ import Wishlist from './Wishlist.js';
 import WishlistForm from './WishlistForm';
 import LoginForm from './LoginForm.js';
 
-
-
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       wishlists: [],
       currentWishlistId: null,
-      notification: false
+      notification: false,
+      visible: true
     }
   }
 
@@ -135,6 +134,8 @@ class App extends Component {
       console.log(error)
     }) 
   }
+
+
 
   render() {
     return (
