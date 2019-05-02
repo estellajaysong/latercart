@@ -3,6 +3,9 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import Navbar from './Navbar.js';
 
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 export default class LoginForm extends Component {
   constructor(props) {
     super(props)
@@ -40,41 +43,23 @@ export default class LoginForm extends Component {
     })
   }
 
-  // reloadPage = () => {
-  //   console.log('reloading.......')
-  //   let token = "Bearer " + localStorage.getItem("jwt");
-  //   axios({
-  //     method: 'get', 
-  //     url: '/api/wishlists', 
-  //     headers: {'Authorization': token }
-  //   })
-  //   .then(response => {
-  //     this.setState({
-  //       wishlists: response.data
-  //     })
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   }) 
-  // }
-
   render() {
     return (
-      <div className="App">
-      < Navbar/>
-        <div className="login-container">   
+      <React.Fragment>
+        < Navbar/>
+        <div className="login-container" >   
         <br/><br/>   
           <form onSubmit={this.login}> 
-            <input className='input' type="text" name="email" placeholder='example@example.com' />
+            <TextField className='input' name="email" label="Your Email"/>
             <br/><br/>
-            <input className='input' type="text" name="password" placeholder='Your Password' />
+            <TextField className='input' name="password" label='Your Password' />
             <br/><br/>
-            <button type='submit' className="loginBtn" >
+            <Button type='submit' variant="outlined" className="loginBtn" >
               Login 
-            </button>
+            </Button>
           </form>
         </div>
-      </div>
+    </React.Fragment>
     )
   }
 }

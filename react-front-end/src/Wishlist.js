@@ -9,7 +9,8 @@ export default class Wishlist extends Component {
     super(props)
     this.state ={
       products:[],
-      showShareForm: false
+      showShareForm: false,
+      showDelete: true
     }
   }
   componentDidMount(){
@@ -34,25 +35,28 @@ export default class Wishlist extends Component {
 
   toggleShare = () => {
     this.setState({
-      showShareForm: !this.state.showShareForm
+      showShareForm: !this.state.showShareForm,
+      showDelete: !this.state.showDelete
     })
   }
 
   render() {
     return (
       <div className="wishlist" >
-        <span className="shareButton" onClick={this.toggleShare}>
-          Share
-        </span>
-        {this.state.showShareForm ?  <ShareForm wishlist={this.props.wishlist}/> : null} 
-
-        <span className="deleteButton" onClick={this.deleteWishlist}>
-          X
-        </span>
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
         {this.state.products.map(product => (
           <Product product={product} key = {product.id}/>
         ))}
+        <footer>
+        <span className="shareButton" onClick={this.toggleShare}>
+          Share
+        </span>
+        {this.state.showShareForm ?  <ShareForm wishlist={this.props.wishlist}/> : null} 
+        {this.state.showDelete ? 
+        <span className="deleteButton" onClick={this.deleteWishlist}>
+          X
+        </span> : null}
+        </footer>
       </div>
     );
   }
