@@ -1,7 +1,6 @@
 class Api::SiteSelectorsController < ApplicationController
   def index
-    puts params[:site_name]
-    @site_selector = SiteSelector.all
+    @site_selector = SiteSelector.where(site_name:params[:site_name])
     render json: @site_selector
   end
 
