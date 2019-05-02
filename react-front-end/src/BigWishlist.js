@@ -10,7 +10,7 @@ export default class BigWishlist extends Component {
     this.state ={
       product:[],
       loadOnce: false,
-      currentProductId: null
+      currentProductId: null,
     }
   }
 
@@ -32,19 +32,9 @@ export default class BigWishlist extends Component {
     axios.delete(`/api/products/${e.target.id}`)
   }
 
-  editProduct = (e) => {
+  toggleForm = (e) => {
     e.preventDefault()
     this.setState({currentProductId:e.target.id})
-    axios.put(`/api/products/${e.target.id}`, {product: {
-      name: "name",
-      img_url: "img",
-      price: 2,
-      notes: "notes",
-      rating:4      
-    }})
-    .then(console.log("product editted"))
-    .then(console.log(input))
-
   }
 
   render() {
@@ -61,10 +51,10 @@ export default class BigWishlist extends Component {
       <p>Price: {prod.price}</p>
       <p>{prod.id}</p>
       <p>Rating: {prod.rating}</p>
-      <p>Notes: {prod.notes}</p>
+      <p>Notes: {prod.note}</p>
       <p>Date Added: {prod.created_at}</p>
       <a href={prod.url}>Buy now</a>
-      <button type="button" id={prod.id} onClick={this.editProduct} >EDIT</button>
+      <button type="button" id={prod.id} onClick={this.toggleForm} >EDIT</button>
       <button type="button" id={prod.id} onClick={this.deleteProduct} >DELETE</button>
       </div>
         ))}

@@ -13,10 +13,10 @@ export default class BigProduct extends Component {
 
   componentDidMount(){
 
-    axios.get(`/api/wishlists/${this.props.id}`)
+    axios.get(`/api/products/${this.props.id}`)
     .then((res) => {
       this.setState({
-        product: res.data[0]
+        product: res.data
       })
     })
     .catch(err => {
