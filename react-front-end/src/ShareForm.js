@@ -47,13 +47,13 @@ export default class ShareForm extends Component {
       headers: {'Authorization': token }
     })
     .then(response => {
-      let emails = []
+      let sharedWithUsers = []
       for(let i of response.data){
-        emails.push(i.user.email)
+        sharedWithUsers.push(i.user)
       }
-      console.log(emails)
+      console.log(sharedWithUsers)
       this.setState({
-        sharedWith: emails
+        sharedWith: sharedWithUsers
       })
     })
     .catch(error => {
@@ -74,8 +74,8 @@ export default class ShareForm extends Component {
         <div>
           {this.state.sharedWith.length >= 1 ?
           (<div >Shared With <br/>
-            {this.state.sharedWith.map(email => (
-              <li>{email}</li>
+            {this.state.sharedWith.map(user => (
+              <li key={user.id}>{user.username}: {user.email}</li>
             ))} </div>): null
            }
           

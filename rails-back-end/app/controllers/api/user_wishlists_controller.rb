@@ -1,6 +1,6 @@
 class Api::UserWishlistsController < ApplicationController
   def index
-    @emails = UserWishlist.where(wishlist_id: params[:wishlistId]).where.not(user_id: current_user.id).map{|r|{user: User.select(:email).find_by(id: r.user_id)}}
+    @emails = UserWishlist.where(wishlist_id: params[:wishlistId]).where.not(user_id: current_user.id).map{|r|{user: User.select(:id, :username, :email).find_by(id: r.user_id)}}
     puts "emails >>>>>>>>>>>>> #{@emails}"
     render json: @emails
   end
