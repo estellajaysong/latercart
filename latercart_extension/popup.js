@@ -27,6 +27,7 @@ chrome.storage.sync.get(['product'], function ({ product }) {
   // function to edit value before confirming a product
   function changeVal(button, field) {
     $(button).click(() => {
+      //for images
       let input = `<form class='edit'><input class='input${+ button}' type='text'></form>`
       if (field === "#img") {
         $("#imgForm").html(input)
@@ -35,6 +36,7 @@ chrome.storage.sync.get(['product'], function ({ product }) {
           $("#imgForm").html(`<img id="img" src=${$(`.input${+ button}`).val()}>`)
         })
       } else {
+        //for title and price
         $(field).html(input)
         $(".edit").submit((e) => {
           e.preventDefault()

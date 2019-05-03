@@ -2,19 +2,19 @@
 axios.get('http://localhost:3000/api/site_selectors',
   { params: { site_name: document.location.origin } })
   .then(function (response) {
-    var prodname = $(record.title_tag).html();
-    var prodprice = $(record.price_tag).html();
-    var prodimg = $(record.img_tag).prop("src");
-    // let record = response.data[0];
-    // if (record){ 
-    // var prodname = $(record.title_tag).html();
-    // var prodprice = $(record.price_tag).html();
-    // var prodimg = $(record.img_tag).prop("src");
-    // } else {
-    // var prodname = $("title").html();
-    // var prodprice = $(".PDPPrice_3HTapM").html();
-    // var prodimg = $(".HyperLink_6o9ywu ProductMediaCarouselStyle_XKpkhr").prop("src");
-    // }
+    let record = response.data[0];
+    if (record){ 
+    var prodname = eval(record.title_tag);
+    var prodprice = eval(record.price_tag);
+    var prodimg = eval(record.img_tag)
+    } else {
+    var prodname = $('title').html() ? $('title').html()
+                 : $('h1').html() ? $('h1').html()
+                 : "not found"
+    var prodprice = $('.price').html() ? $('.price').html() 
+                 : "not found"
+    var prodimg = "not found"
+    }
 
     const product = { name: prodname, price: prodprice, img: prodimg };
     chrome.storage.sync.set({ product: product }, () =>
