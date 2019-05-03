@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Product from './Product.js';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ShareForm from './ShareForm.js';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -55,6 +55,7 @@ export default class Wishlist extends Component {
   render() {
     return (
       <div className="wishlist" >
+          <Link to={`/wishlists/${this.props.wishlist.id}`}><h1>Go to: </h1> </Link>
           <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
           {/* <Grid container spacing={2}> */}
           {this.state.products.map(product => (
@@ -63,7 +64,6 @@ export default class Wishlist extends Component {
             // </Grid>
           ))}
           {/* </Grid> */}
-
           <footer>
             <span className="shareButton" onClick={this.openShare}>
               Share
