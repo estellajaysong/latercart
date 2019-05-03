@@ -37,7 +37,7 @@ export default class Navbar extends Component {
       <MuiThemeProvider theme={this.theme}>
         <AppBar position="static" className="nav" >
           <Toolbar>
-            <img src={logo} alt={logo} className="logo"/>
+          <Link to="/"><img src={logo} alt={logo} className="logo"/></Link>
             <Typography variant="h5" style={{flexGrow: 1}}>
               LaterCart
             </Typography>
