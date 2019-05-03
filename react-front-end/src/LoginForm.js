@@ -46,7 +46,6 @@ export default class LoginForm extends Component {
   render() {
     return (
       <React.Fragment>
-        < Navbar/>
         <div className="login-container" >   
         <br/><br/>   
           <form onSubmit={this.login}> 

@@ -103,6 +103,7 @@ class App extends Component {
 
   componentDidMount() {
     let token = "Bearer " + localStorage.getItem("jwt");
+    console.log('token>>>>>>', token)
     axios({
       method: 'get', 
       url: '/api/wishlists', 

@@ -60,7 +60,7 @@ code {
   background-color: purple;
 }
 
-.product {
+/* .product {
   display:flex;
   justify-content: space-between;
   max-width:260px;
@@ -70,11 +70,11 @@ code {
   padding:       15px;
   padding-bottom: 80px;
   margin-top:    20px;
-}
+} */
 
 .product-img{
-  max-width: 100px;
-  height: auto;
+  max-width: 70px;
+  max-height: 70px;
 }
 
 /* .wishlist {

@@ -9,23 +9,42 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-export default class Wishlist extends Component {
+const styles = theme => ({
+  root: {
+    flexGrow: 1, 
+    margin: theme.spacing.unit * 3,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    margin: 5
+  },
+});
+
+
+class Wishlist extends Component {
   constructor(props){
     super(props)
     this.state ={
       products:[],
       showShareForm: false,
       showDelete: true,
+      currentWishlistId: this.props.wishlist.id
     }
+    
   }
   componentDidMount(){
     axios({
       method: 'get', 
-      url: '/api/products/', 
+      url: `/api/wishlists/${this.props.wishlist.id}`,
       params: {
-        wishlistId: this.props.wishlist.id
-      }
+        request: "the last 4"
+      },
     })
     .then((res) => {
       this.setState({
@@ -57,19 +76,33 @@ export default class Wishlist extends Component {
       showDelete: true 
     });
   };
-
+  
   render() {
+    
     return (
       <div className="wishlist" >
           <Link to={`/wishlists/${this.props.wishlist.id}`}><h1>Go to: </h1> </Link>
           <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
-          {/* <Grid container spacing={2}> */}
-          {this.state.products.map(product => (
-            // <Grid item xs={1}>
-            <Product product={product} key = {product.id}/>
-            // </Grid>
-          ))}
-          {/* </Grid> */}
+          <div className={this.props.classes.root} m={6}>
+          <Grid container spacing={11} >
+            {this.state.products.slice(0, 2).map(product => (
+              <Grid item sm={6}>
+              <Paper className={this.props.classes.paper}>
+                <Product product={product} key = {product.id} />
+              </Paper>
+              </Grid>
+            ))}
+          </Grid>
+          <Grid container spacing={11} >
+            {this.state.products.slice(2).map(product => (
+              <Grid item sm={6}>
+              <Paper className={this.props.classes.paper}>
+                <Product product={product} key = {product.id}/>
+              </Paper>
+              </Grid>
+            ))}
+          </Grid>
+          </div>
           <footer>
             <span className="shareButton" onClick={this.openShare}>
               Share
@@ -101,3 +134,8 @@ export default class Wishlist extends Component {
   }
 }
 
+Wishlist.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Wishlist);
