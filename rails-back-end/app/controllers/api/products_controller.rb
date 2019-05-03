@@ -1,13 +1,8 @@
 class Api::ProductsController < ApplicationController
-  # def index
-  #   puts "index"
-  #   @product = Product.find_by params[:id]
-  #   render json: @product
-  # end
-
+  def index
+    @4product = Product.where(wishlist_id:params[:id])
+    
   def show
-    puts "show"
-    puts params[:id]
     @product = Product.find params[:id]
     render json: @product
   end

@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
+import logo from './img/wishlist.png'
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import orange from '@material-ui/core/colors/orange';
+import purple from '@material-ui/core/colors/purple';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -11,6 +20,12 @@ export default class Navbar extends Component {
       currentUserEmail: null
     }
   }
+  theme = createMuiTheme({
+    palette: {
+      primary: orange,
+      secondary: purple,
+    },
+  });
 
   logout = () => {
     localStorage.removeItem('jwt');
@@ -18,11 +33,20 @@ export default class Navbar extends Component {
   }
 
   render() {
-    return (<div className="navbar">
-    <Link to="/"><h1>latercart</h1></Link>
-    <h3>{this.state.currentUserName}</h3> </div>
+    return (
+      <MuiThemeProvider theme={this.theme}>
+        <AppBar position="static" className="nav" >
+          <Toolbar>
+            <img src={logo} alt={logo} className="logo"/>
+            <Typography variant="h5" style={{flexGrow: 1}}>
+              LaterCart
+            </Typography>
+            {this.state.currentUserName}
+            {localStorage.getItem("jwt") ? 
+            <Button className="logoutBtn"  onClick={this.logout}>Logout</Button> : null }
+          </Toolbar>
+        </AppBar>
+      </MuiThemeProvider>
     )
   }
 }
-
-

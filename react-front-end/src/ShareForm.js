@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 export default class ShareForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sharedWith: []
+      sharedWith: [],
+      sendToEmail: ''
     }
   }
 
@@ -13,6 +17,12 @@ export default class ShareForm extends Component {
     e.preventDefault()
     console.log('sharing...')
     console.log(this.props.wishlist.id)
+    let email = this.state.sendToEmail
+    let newUser = {id: Math.floor(Math.random() * 100-10+1) + 1, username: 'Friend', email: this.state.sendToEmail}
+      this.setState({
+        sharedWith: [...this.state.sharedWith, newUser],
+        sendToEmail: ''
+      });
     let token = "Bearer " + localStorage.getItem("jwt");
     axios({
       method: 'post', 
@@ -20,20 +30,24 @@ export default class ShareForm extends Component {
       data: {
         info: { 
           wishlist_id: this.props.wishlist.id,
-          email: e.target.elements.email.value
+          email: email
         }
       },
       headers: {'Authorization': token }
     })
     .then(response => {
-      console.log(response)
-      // this.setState({
-      //   wishlists: response.data
-      // })
+      console.log('>>>>>>>>>>>', response)
+      
     })
     .catch(error => {
       console.log(error)
     }) 
+  }
+
+  onHandleChange = e => {
+    this.setState({
+      sendToEmail: e.target.value
+    });
   }
 
   componentDidMount() {
@@ -66,10 +80,11 @@ export default class ShareForm extends Component {
     return (
       <div className="share-container">      
         <form onSubmit={this.shareWishlist}> 
-          <input className='input' type="text" name="email" placeholder='example@example.com' />
-          <button type='submit' className="shareBtn" >
+          <TextField className='input' name="email" label="Your Friend's Email Address" value={this.state.sendToEmail} onChange={this.onHandleChange}/>
+          <br/><br/>
+          <Button type='submit' className="shareBtn" variant="outlined" onClick={this.addToSharedList}>
             Share 
-          </button>
+          </Button>
         </form>
         <div>
           {this.state.sharedWith.length >= 1 ?
