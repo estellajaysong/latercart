@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import Navbar from './Navbar.js';
 import axios from 'axios';
 import ProductForm from './ProductForm.js';
 
@@ -11,15 +10,14 @@ export default class BigProduct extends Component {
     this.state ={
       product:[],
       currentProductId: null,
-
     }
   }
 
   componentDidMount(){
-
-    axios.get(`/api/products/${this.props.id}`)
+console.log(this.props.match.params)
+    axios.get(`/api/products/${this.props.match.params.id}`)
     .then((res) => {
-      let id = this.props.id
+      let id = this.props.match.params.id
       console.log(id)
       this.setState({
         product: res.data
@@ -44,11 +42,10 @@ export default class BigProduct extends Component {
 
   render() {
     return (
-      <Router>
-        <Navbar/>
+      <div>
         {this.state.currentProductId && <ProductForm product = {this.state.product}/>}
       {!this.state.currentProductId && <div className="bigproduct" key={this.state.product.name}>
-      <Link to="/wishlists/1">Back</Link>
+      <Link to={`/wishlists/${this.state.product.wishlist_id}`}>Back</Link>
       <h1>{this.state.product.name}</h1>
       <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
       <p>Price: {this.state.product.price}</p>
@@ -59,7 +56,7 @@ export default class BigProduct extends Component {
       <button type="button" id={this.state.product.id} onClick={this.toggleForm} >EDIT</button>
       <button type="button" id={this.state.product.id} onClick={this.deleteProduct} >DELETE</button>
       </div>}
-      </Router>
+      </div>
     );
   }
 }

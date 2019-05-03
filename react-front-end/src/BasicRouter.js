@@ -24,12 +24,7 @@ class AppRouter extends Component {
     return (
       <Router>
         <div>
-        <div className="navbar">
-            <Link to="/"><h1>latercart</h1></Link>
-            <Link to="/wishlists/1">Wishlists</Link>
-            <Link to="/products/2">Products</Link>
-            <h3>{this.state.currentUserName}</h3>                
-        </div>
+          <Navbar />
           <Route path="/" exact render={(props)=> <App /> } />
           <Route path="/wishlists/:id" render={(props) => <BigWishlist {...props}/>} />
           <Route path="/products/:id" render={(props) => <BigProduct {...props} />} />

@@ -20,9 +20,9 @@ export default class Navbar extends Component {
   render() {
     return (<div className="navbar">
     <Link to="/"><h1>latercart</h1></Link>
-    <h1>My lists</h1>
-    <h1>User</h1>
-    <h3>{this.state.currentUserName}</h3></div>
+    <Link to="/wishlists/1">Wishlists</Link>
+    <Link to="/products/2">Products</Link>
+    <h3>{this.state.currentUserName}</h3> </div>
     )
 
   }
