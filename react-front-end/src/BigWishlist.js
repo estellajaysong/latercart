@@ -11,7 +11,7 @@ export default class BigWishlist extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
     axios.get(`/api/wishlists/${this.props.match.params.id}`)
     .then((res) => {
       this.setState({
@@ -29,7 +29,7 @@ export default class BigWishlist extends Component {
         <Link to="/">Back</Link>
         {this.state.product.map(prod=> (
       <div className="bigproduct" key={prod.name}>
-      <Link to="/products/1">{prod.name}</Link>
+      <Link to={`/products/${prod.id}`}>{prod.name}</Link>
       <img className="product-img" src={prod.img_url} alt={prod.name} />
       <p>Price: {prod.price}</p>
       <p>{prod.id}</p>
