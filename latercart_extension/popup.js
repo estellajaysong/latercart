@@ -15,7 +15,7 @@ chrome.storage.sync.get(['product'], function ({ product }) {
     let title = $("#title").html()
     let price = $("#price").html()
     let img = $("#img").attr("src")
-    axios.post('http://localhost:3000/api/products#create',
+    axios.post('http://localhost:3000/api/products',
       { name: title, price: price, img_url: img, wishlist_id: 1 })
       .then(function (response) {
         console.log(response);
