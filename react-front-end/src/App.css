@@ -1,26 +1,11 @@
-/* .App {
-  text-align: center;
-} */
-
-/* .wishlists {
-  display: flex;
-  flex-direction: row;
-}
-
-.wishlists-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
-
 .nav {
   display:flex;
   justify-content: space-between;
 }
 
 .wishlist {
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   margin: 10px;
   background: lightgrey;
   font-size: 11px;
@@ -35,8 +20,8 @@
 
 .newWishBtn {
   background: lightgrey;
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   color: purple;
   border: none;
   font-size: 5em;
@@ -53,7 +38,7 @@
   border: 0;
   background: none;
   outline: none;
-  width: 246px;
+  width: 298px;
   font-size: 2em;
   font-weight: 700;
   text-align: center;
@@ -67,7 +52,7 @@
 }
 
 .wishlist footer {
-  margin-top: 175px;
+  margin-top: 225px;
   margin-left: 5px;
 }
 

@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Grid from '@material-ui/core/Grid';
 
 export default class Wishlist extends Component {
   constructor(props){
@@ -19,7 +20,7 @@ export default class Wishlist extends Component {
     }
   }
   componentDidMount(){
-    axios.get(`/api/wishlists/${this.props.wishlist.id}`)
+    axios.get(`/api/products/${this.props.wishlist.id}`)
     .then((res) => {
       this.setState({
         products: res.data
@@ -55,9 +56,13 @@ export default class Wishlist extends Component {
     return (
       <div className="wishlist" >
           <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
+          {/* <Grid container spacing={2}> */}
           {this.state.products.map(product => (
+            // <Grid item xs={1}>
             <Product product={product} key = {product.id}/>
+            // </Grid>
           ))}
+          {/* </Grid> */}
 
           <footer>
             <span className="shareButton" onClick={this.openShare}>
