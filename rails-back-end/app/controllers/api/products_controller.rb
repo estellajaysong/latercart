@@ -1,6 +1,7 @@
 class Api::ProductsController < ApplicationController
   def index
-    @4product = Product.where(wishlist_id:params[:id])
+    @productfour = Product.where(wishlist_id:params[:id])
+  end
     
   def show
     @product = Product.find params[:id]
