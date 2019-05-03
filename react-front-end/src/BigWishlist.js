@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 export default class BigWishlist extends Component {
@@ -11,7 +11,8 @@ export default class BigWishlist extends Component {
   }
 
   componentDidMount(){
-    axios.get(`/api/wishlists/${this.props.id}`)
+    console.log(this.props.match.params.id)
+    axios.get(`/api/wishlists/${this.props.match.params.id}`)
     .then((res) => {
       this.setState({
         product: res.data,

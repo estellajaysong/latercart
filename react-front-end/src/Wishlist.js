@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Product from './Product.js';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ShareForm from './ShareForm.js';
 
 export default class Wishlist extends Component {
@@ -49,10 +49,10 @@ export default class Wishlist extends Component {
         <span className="deleteButton" onClick={this.deleteWishlist}>
           X
         </span>
+        <Link to={`/wishlists/${this.props.wishlist.id}`}><h1>Go to: </h1> </Link>
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
         {this.state.products.map(product => (
           <Product product={product} key = {product.id}/>
-          
         ))}
       </div>
     );

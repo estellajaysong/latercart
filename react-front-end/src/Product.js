@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import BigProduct from './BigProduct';
-// import Wishlist from './Wishlist.js'
-// import ReactDOM from 'react-dom';
+import { Link } from "react-router-dom";
+
 
 export default class Product extends Component {
   //  <Route path="/product/:product" render={(props) => <BigProduct {...props} product={this.props.product}/>}/>

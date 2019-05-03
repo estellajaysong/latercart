@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import ProductForm from './ProductForm.js';
 
@@ -32,6 +32,7 @@ console.log(this.props.match.params)
   deleteProduct = (e) => {
     e.preventDefault()
     axios.delete(`/api/products/${e.target.id}`)
+    .then(<Redirect to="/"></Redirect>)
   }
 
   toggleForm = (e) => {
@@ -50,7 +51,7 @@ console.log(this.props.match.params)
       <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
       <p>Price: {this.state.product.price}</p>
       <p>Rating: {this.state.product.rating}</p>
-      <p>Notes: {this.state.product.notes}</p>
+      <p>Notes: {this.state.product.note}</p>
       <p>Date Added: {this.state.product.created_at}</p>
       <a href={this.state.product.url}>Buy now</a>
       <button type="button" id={this.state.product.id} onClick={this.toggleForm} >EDIT</button>

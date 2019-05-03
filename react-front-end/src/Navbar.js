@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 
 export default class Navbar extends Component {
@@ -20,11 +20,8 @@ export default class Navbar extends Component {
   render() {
     return (<div className="navbar">
     <Link to="/"><h1>latercart</h1></Link>
-    <Link to="/wishlists/1">Wishlists</Link>
-    <Link to="/products/2">Products</Link>
     <h3>{this.state.currentUserName}</h3> </div>
     )
-
   }
 }
 
