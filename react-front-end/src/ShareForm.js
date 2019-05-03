@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 export default class ShareForm extends Component {
   constructor(props) {
     super(props)
@@ -67,10 +70,11 @@ export default class ShareForm extends Component {
     return (
       <div className="share-container">      
         <form onSubmit={this.shareWishlist}> 
-          <input className='input' type="text" name="email" placeholder='example@example.com' />
-          <button type='submit' className="shareBtn" >
+          <TextField className='input' name="email" label="Your Friend's Email Address" />
+          <br/><br/>
+          <Button type='submit' className="shareBtn" variant="outlined">
             Share 
-          </button>
+          </Button>
         </form>
         <div>
           {this.state.sharedWith.length >= 1 ?

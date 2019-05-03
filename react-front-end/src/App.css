@@ -71,6 +71,14 @@
   margin-left: 5px;
 }
 
+.share-container form {
+  text-align: center;
+}
+
+.share-container input {
+  width: 500px;
+}
+
 .deleteButton {
   visibility: hidden;
   float: right;
@@ -89,7 +97,6 @@
   font-size: 18px;
   cursor: pointer;
   color: purple;
-
   font-weight: 900;
 }
 /* .form-deleteButton {
