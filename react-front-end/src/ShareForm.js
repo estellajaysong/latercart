@@ -18,7 +18,7 @@ export default class ShareForm extends Component {
     console.log('sharing...')
     console.log(this.props.wishlist.id)
     let email = this.state.sendToEmail
-    let newUser = {id: 3, username: 'Kate', email: this.state.sendToEmail}
+    let newUser = {id: Math.floor(Math.random() * 100-10+1) + 1, username: 'Friend', email: this.state.sendToEmail}
       this.setState({
         sharedWith: [...this.state.sharedWith, newUser],
         sendToEmail: ''
