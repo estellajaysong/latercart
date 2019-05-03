@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-// import LoginForm from './LoginForm.js';
-// import Logout from './Logout.js';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import logo from './img/wishlist.png'
 
@@ -13,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import orange from '@material-ui/core/colors/orange';
 import purple from '@material-ui/core/colors/purple';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 
 export default class Navbar extends Component {
   constructor(props) {
