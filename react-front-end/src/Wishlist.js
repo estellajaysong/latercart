@@ -52,6 +52,7 @@ export default class Wishlist extends Component {
         <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
         {this.state.products.map(product => (
           <Product product={product} key = {product.id}/>
+          
         ))}
       </div>
     );

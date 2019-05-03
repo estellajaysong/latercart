@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-import Navbar from './Navbar.js';
+// import Navbar from './Navbar.js';
 import Wishlist from './Wishlist.js';
 import WishlistForm from './WishlistForm';
 import LoginForm from './LoginForm.js';
@@ -141,7 +141,7 @@ class App extends Component {
     return (
       localStorage.getItem("jwt") ? 
       (<div className="App">
-        < Navbar reloadPage={this.reloadPage}/>
+        {/* < Navbar reloadPage={this.reloadPage}/> */}
         <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>

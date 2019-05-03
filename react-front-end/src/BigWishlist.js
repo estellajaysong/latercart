@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import Navbar from './Navbar.js';
 import axios from 'axios';
 
 export default class BigWishlist extends Component {
@@ -25,8 +24,7 @@ export default class BigWishlist extends Component {
 
   render() {
     return (
-      <Router>
-        <Navbar/>
+      <div>
         <Link to="/">Back</Link>
         {this.state.product.map(prod=> (
       <div className="bigproduct" key={prod.name}>
@@ -39,7 +37,7 @@ export default class BigWishlist extends Component {
       <p>Date Added: {prod.created_at}</p>
       </div>
         ))}
-      </Router>
+      </div>
     );
   }
 }
