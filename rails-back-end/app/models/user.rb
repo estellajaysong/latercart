@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password validations: false
-  has_many :user_wishlists
+  # has_and_belongs_to_many :wishlists
+  # has_many :wishlists, :through => :user_wishlists
+  has_many :user_wishlists, dependent: :destroy
+  accepts_nested_attributes_for :user_wishlists
 
   def to_token_payload
     {

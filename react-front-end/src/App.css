@@ -1,21 +1,11 @@
-.App {
-  text-align: center;
+.nav {
+  display:flex;
+  justify-content: space-between;
 }
-
-/* .wishlists {
-  display: flex;
-  flex-direction: row;
-}
-
-.wishlists-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
 
 .wishlist {
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   margin: 10px;
   background: lightgrey;
   font-size: 11px;
@@ -30,8 +20,8 @@
 
 .newWishBtn {
   background: lightgrey;
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   color: purple;
   border: none;
   font-size: 5em;
@@ -48,7 +38,7 @@
   border: 0;
   background: none;
   outline: none;
-  width: 246px;
+  width: 298px;
   font-size: 2em;
   font-weight: 700;
   text-align: center;
@@ -61,6 +51,19 @@
   background-color: white;
 }
 
+.wishlist footer {
+  margin-top: 225px;
+  margin-left: 5px;
+}
+
+.share-container form {
+  text-align: center;
+}
+
+.share-container input {
+  width: 500px;
+}
+
 .deleteButton {
   visibility: hidden;
   float: right;
@@ -68,10 +71,19 @@
   font-size: 25px;
   cursor: pointer;
   color: rgb(165, 5, 5);
-  margin-top: 220px;
+  
   font-weight: 900;
 }
 
+.shareButton {
+  visibility: hidden;
+  float: left;
+  margin: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  color: purple;
+  font-weight: 900;
+}
 /* .form-deleteButton {
   visibility: hidden;
   float: right;
@@ -85,6 +97,10 @@
 } */
 
 .wishlist:hover .deleteButton {
+  visibility: visible;
+}
+
+.wishlist:hover .shareButton {
   visibility: visible;
 }
 
@@ -102,4 +118,19 @@
   color: purple;
 }
 
+.login-container {  
+  text-align: center;
+}
+
+.login-container input{  
+  width: 450px
+}
+
+.logo{  
+  height: auto;
+  width: auto;
+  max-height: 50px;
+  max-width: 50px;
+  padding-right: 1em;
+}
 

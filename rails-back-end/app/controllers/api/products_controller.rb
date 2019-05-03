@@ -1,6 +1,10 @@
 class Api::ProductsController < ApplicationController
   def index
-    @product = Product.find_by params[:id]
+    @productfour = Product.where(wishlist_id:params[:id])
+  end
+    
+  def show
+    @product = Product.find params[:id]
     render json: @product
   end
 
@@ -18,7 +22,19 @@ class Api::ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product = Product.find(params[:id])
+    @product.update_attributes(product_params)
+    render json: @wishlist
+  end
+
   def destroy
+    puts "in destroy"
+    @delProduct = Product.find(params[:id])
+    if @delProduct.destroy
+    else
+      render json: @delProduct.errors
+    end
   end
 
   private
@@ -28,10 +44,9 @@ class Api::ProductsController < ApplicationController
       :name,
       :img_url,
       :price,
-      :wishlist_id
-      # :category_id,
-      # :rating,
-      # :notes
+      :wishlist_id,
+      :rating,
+      :note
     )
   end
 end

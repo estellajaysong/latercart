@@ -1,87 +1,52 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
-import LoginForm from './LoginForm.js';
-import Logout from './Logout.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
+import logo from './img/wishlist.png'
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import orange from '@material-ui/core/colors/orange';
+import purple from '@material-ui/core/colors/purple';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showMenu: false, 
-      currentUserId: null,
-      currentUserName: null,
+      currentUserId: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).sub : null,
+      currentUserName: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).name : null,
       currentUserEmail: null
     }
-    this.showMenu = this.showMenu.bind(this);
   }
+  theme = createMuiTheme({
+    palette: {
+      primary: orange,
+      secondary: purple,
+    },
+  });
 
-  fetchData = () => {
-    axios.get('/api/data') 
-    .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
-    }) 
-  }
-
-  showMenu(event) {
-    event.preventDefault();
-    
-    this.setState({
-      showMenu: true,
-    });
-  }
-
-  login = e => {
-    e.preventDefault()
-    axios('/api/user_token', {
-      method: "post",
-      data: {auth: {
-          email: e.target.elements.email.value, 
-          password: e.target.elements.password.value
-        }}
-    })
-    .then(response => {
-      localStorage.setItem("jwt", response.data.jwt);
-      //console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
-      let decodedToken = jwtDecode(response.data.jwt)
-      //console.log(decodedToken)
-      this.setState({
-        currentUserId: decodedToken.sub,
-        currentUserName: decodedToken.name,
-        currentUserEmail: JSON.parse(response.config.data).auth.email
-      })
-      // load the wishlists after login
-      this.props.reloadPage()
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  logout = () => {
+    localStorage.removeItem('jwt');
+    window.location.reload();
   }
 
   render() {
     return (
-      <Router>
-        <div className="navbar">
-          <h1>latercart</h1>
-          <h1>My lists</h1>
-          <h1>User</h1>
-          <h3>{this.state.currentUserName}</h3>
-          <Link to="/login/">Login</Link>
-          <Link to="/logout/">Logout</Link>
-          <Route path="/login/" render={(props) => <LoginForm {...props} login={this.login} />} />
-          <Route path="/logout/" render={(props) => <Logout {...props} reloadPage={this.props.reloadPage} />}  />
-        </div>
-      </Router>)
-
+      <MuiThemeProvider theme={this.theme}>
+        <AppBar position="static" className="nav" >
+          <Toolbar>
+            <img src={logo} alt={logo} className="logo"/>
+            <Typography variant="h5" style={{flexGrow: 1}}>
+              LaterCart
+            </Typography>
+            {this.state.currentUserName}
+            {localStorage.getItem("jwt") ? 
+            <Button className="logoutBtn"  onClick={this.logout}>Logout</Button> : null }
+          </Toolbar>
+        </AppBar>
+      </MuiThemeProvider>
+    )
   }
 }
-
-

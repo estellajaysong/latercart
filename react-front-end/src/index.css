@@ -74,11 +74,24 @@ code {
 
 .product-img{
   max-width: 100px;
+  height: auto;
 }
 
-.wishlist {
+/* .wishlist {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+
 }
+
+.bigproduct{
+  background-color: lightgray;
+  width: 900px;
+  z-index: 1;
+  border: 2px solid grey;
+
+}
+
+} */
+
