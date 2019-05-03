@@ -20,7 +20,13 @@ export default class Wishlist extends Component {
     }
   }
   componentDidMount(){
-    axios.get(`/api/products/${this.props.wishlist.id}`)
+    axios({
+      method: 'get', 
+      url: '/api/products/', 
+      params: {
+        wishlistId: this.props.wishlist.id
+      }
+    })
     .then((res) => {
       this.setState({
         products: res.data
