@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Navbar from './Navbar.js';
 import axios from 'axios';
+import ProductForm from './ProductForm.js';
+
 
 export default class BigProduct extends Component {
   constructor(props){
     super(props)
     this.state ={
-      product:[]
+      product:[],
+      currentProductId: null,
+
     }
   }
 
@@ -27,12 +31,23 @@ export default class BigProduct extends Component {
 
   }
 
+  deleteProduct = (e) => {
+    e.preventDefault()
+    axios.delete(`/api/products/${e.target.id}`)
+  }
+
+  toggleForm = (e) => {
+    e.preventDefault()
+    this.setState({currentProductId:e.target.id})
+    return <ProductForm product = {this.state.product}/>
+  }
+
   render() {
     return (
       <Router>
         <Navbar/>
-       
-      <div className="bigproduct" key={this.state.product.name}>
+        {this.state.currentProductId && <ProductForm product = {this.state.product}/>}
+      {!this.state.currentProductId && <div className="bigproduct" key={this.state.product.name}>
       <Link to="/wishlists/1">Back</Link>
       <h1>{this.state.product.name}</h1>
       <img className="product-img" src={this.state.product.img_url} alt={this.state.product.name} />
@@ -41,8 +56,9 @@ export default class BigProduct extends Component {
       <p>Notes: {this.state.product.notes}</p>
       <p>Date Added: {this.state.product.created_at}</p>
       <a href={this.state.product.url}>Buy now</a>
-      </div>
-      
+      <button type="button" id={this.state.product.id} onClick={this.toggleForm} >EDIT</button>
+      <button type="button" id={this.state.product.id} onClick={this.deleteProduct} >DELETE</button>
+      </div>}
       </Router>
     );
   }
