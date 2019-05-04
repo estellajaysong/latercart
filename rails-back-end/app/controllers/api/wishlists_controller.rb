@@ -16,8 +16,14 @@ class Api::WishlistsController < ApplicationController
     if params[:request] == "the last 4"
       @products = Product.where(wishlist_id: params[:id]).last(4)
       render json: @products
+    elsif params[:request] == "rating"
+      @products = Product.where(wishlist_id: params[:id]).last(1)
+      render json: @products
+    elsif params[:request] == "price"
+      @products = Product.where(wishlist_id: params[:id]).last(2)
+      render json: @products
     else
-      @products = Product.where(wishlist_id: params[:id])
+      @products = Product.where(wishlist_id: params[:id]).order("created_at DESC")
       render json: @products
     end
   end

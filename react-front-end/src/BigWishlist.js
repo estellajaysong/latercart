@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 // import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withTheme } from '@material-ui/core/styles';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 
 const styles = theme => ({
@@ -37,7 +40,8 @@ class BigWishlist extends Component {
     super(props)
     this.state = {
       product: [],
-      expanded: false
+      expanded: false,
+      sortBy: 'newest'
     }
   }
 
@@ -57,10 +61,45 @@ class BigWishlist extends Component {
     this.setState({ expanded: !this.state.expanded })
   }
 
+  handleChange = e => {
+    console.log(e.target.value)
+    this.setState({
+      sortBy: e.target.value
+    })
+    axios({
+      method: 'get', 
+      url: `/api/wishlists/${this.props.match.params.id}`,
+      params: {
+        request: e.target.value
+      },
+    })
+    .then((res) => {
+      console.log(res)
+      this.setState({
+        product: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  
+  };
+
   render() {
     const {classes} = this.props
     return (
       <React.Fragment>
+      <div className="sortByForm">
+        <FormControl>
+          <InputLabel>Sort By</InputLabel>
+          <NativeSelect value={this.state.sortBy} name="sort" onChange={this.handleChange}>
+            <option value={'newest'}>Newest</option>
+            <option value={'rating'}>Rating</option>
+            <option value={'price'}>Price</option>
+          </NativeSelect>
+        </FormControl>
+      </div>
+      <br/><br/><br/>
       <div className="bigwishlist">        
         {this.state.product.map(prod => (
           <Card color="primary" className={classes.card} key={prod.name}>
