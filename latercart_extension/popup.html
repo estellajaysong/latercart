@@ -2,11 +2,13 @@
 
 <head>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=ABeeZee%7CMontserrat" rel="stylesheet">
   <title>latercart</title>
-  <span id="banner">latercart</span>
+  <span id="banner">later<div style="display:inline;color:white;">cart</div></span>
 </head>
 
 <body>
+  <div id="firstPage" style="display:block;">
   <div>
     <h2 id="title"></h2><img id="editName" class="editIcon" src="/images/pencil.png">
   </div>
@@ -15,6 +17,26 @@
     <h2 id="price"></h2><img id="editPrice" class="editIcon" src="/images/pencil.png">
   </div>
   <button id='confirm'>Confirm</button>
+</div>
+
+<div id="secondPage" style="display:none">
+  <form>
+  <div id="lists"></div>
+  <div id="rating">
+    <img id="heart1" class="heart" src="/images/emptyHeart.png">
+    <img id="heart2" class="heart" src="/images/emptyHeart.png">
+    <img id="heart3" class="heart" src="/images/emptyHeart.png">
+    <img id="heart4" class="heart" src="/images/emptyHeart.png">
+    <img id="heart5" class="heart" src="/images/emptyHeart.png">
+  </div>
+  <div id="notes">Notes&nbsp 
+    <textarea rows="4" cols="34"></textarea>
+  </div>
+  <button id='submit'>Submit</button>
+  <br>
+  <button id='back'>Back</button>
+</form>
+</div>
   <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

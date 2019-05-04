@@ -3,9 +3,9 @@ axios.get('http://localhost:3000/api/site_selectors',
   { params: { site_name: document.location.origin } })
   .then(function (response) {
     let record = response.data[0];
-    const prodname = $(record.title_tag).html();
-    const prodprice = $(record.price_tag).html();
-    const prodimg = $(record.img_tag).prop("src");
+    const prodname = eval(record.title_tag)
+    const prodprice = eval(record.price_tag)
+    const prodimg = eval(record.img_tag)
 
     const product = { name: prodname, price: prodprice, img: prodimg };
 
