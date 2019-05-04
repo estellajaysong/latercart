@@ -141,3 +141,28 @@
   float: right;
 }
 
+.activeCard {
+  visibility: visible;
+}
+.inactiveCard {
+  opacity: 0.5;
+}
+
+.bigwishlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bigwishlist footer{
+  float: right;
+  visibility: hidden;
+}
+
+.bigwishlist footer{
+  float: right;
+  visibility: hidden;
+}
+
+.BigWishlist-card-106:hover footer{
+  visibility: visible;
+}

@@ -17,11 +17,13 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const styles = theme => ({
   card: {
     width: 400,
+    heigtht: 500,
     margin: '0.5em',
   },
   expand: {
@@ -62,7 +64,7 @@ class BigWishlist extends Component {
     this.setState({ expanded: !this.state.expanded })
   }
 
-  handleChange = e => {
+  handleSort = e => {
     console.log(e.target.value)
     this.setState({
       sortBy: e.target.value
@@ -104,9 +106,6 @@ class BigWishlist extends Component {
     })
     .then((res) => {
       console.log(res)
-      // this.setState({
-      //   product: res.data
-      // })
     })
     .catch(err => {
       console.log(err)
@@ -122,31 +121,40 @@ class BigWishlist extends Component {
     const {classes} = this.props
     return (
       <React.Fragment>
-      <div className="sortByForm">
-        <FormControl>
-          <InputLabel>Sort By</InputLabel>
-          <NativeSelect value={this.state.sortBy} name="sort" onChange={this.handleChange}>
-            <option value={'newest'}>Newest</option>
-            <option value={'rating'}>Rating</option>
-          </NativeSelect>
-        </FormControl>
-      </div>
+        <div className="sortByForm">
+          <FormControl>
+            <InputLabel>Sort By</InputLabel>
+            <NativeSelect value={this.state.sortBy} name="sort" onChange={this.handleSort}>
+              <option value={'newest'}>Newest</option>
+              <option value={'rating'}>Rating</option>
+            </NativeSelect>
+          </FormControl>
+        </div>
       <br/><br/><br/>
       <div className="bigwishlist">        
         {this.state.product.map(prod => (
+          <div className={this.boughtStatus(prod.id) ? "inactiveCard" : "activeCard"}>
           <Card color="primary" className={classes.card} key={prod.name}>
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
-            <Checkbox
-              checked={this.boughtStatus(prod.id) ? true : false}
-              onChange={this.handleCheck(prod.id)}
-              value={this.boughtStatus(prod.id) ? false : true}
-            />
             <img className="product-img" src={prod.img_url} alt={prod.name} />
             <CardContent>
               <Typography component="p">
                 <p>Price: {prod.price}</p>
               </Typography>
             </CardContent>
+            <footer>
+              <FormControlLabel
+                label="Bought"
+                control={
+                  <Checkbox
+                    checked={this.boughtStatus(prod.id) ? true : false}
+                    onChange={this.handleCheck(prod.id)}
+                    value={this.boughtStatus(prod.id) ? false : true}
+                  />
+                }
+                
+              />
+            </footer>
             <IconButton
               className= {classnames(classes.expand, {[classes.expandOpen]:this.state.expanded})}
               onClick={this.handleExpandClick}
@@ -169,6 +177,7 @@ class BigWishlist extends Component {
               </CardContent>
             </Collapse>
           </Card>
+          </div>
         ))}
       </div>
       </React.Fragment>
