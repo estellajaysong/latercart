@@ -14,7 +14,7 @@ code {
 }
 
 .material-icons{
-  font-size: 48px
+  font-size: 21px
 }
 
 /* Dropdown Button */
@@ -80,6 +80,10 @@ code {
   max-height: 70px;
 }
 
+.product-img-big-wish{
+  max-width: 200px;
+}
+
 .bigproduct-img{
   max-width: 350px;
   height: auto;
@@ -88,6 +92,7 @@ code {
 .bigwishlist{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 /* .BigWishlist-card-106{

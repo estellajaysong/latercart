@@ -6,14 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import SvgIcon from '@material-ui/core/SvgIcon';
 import { withTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
 
 
 const styles = theme => ({
@@ -51,7 +49,7 @@ class BigProduct extends Component {
   componentDidMount() {
     axios.get(`/api/products/${this.props.match.params.id}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.setState({
           product: res.data
         })
@@ -81,31 +79,29 @@ class BigProduct extends Component {
       <div className="bigproduct" color="primary">
         {this.state.currentProductId && <ProductForm product={this.state.product} />}
         {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name}>
-          <CardHeader title={this.state.product.name} />
+          <CardHeader title={this.state.product.name} color="4"/>
           <img className="bigproduct-img" src={this.state.product.img_url} alt={this.state.product.name} />
           <CardContent>
-            <Typography component="p">
-              <p>Price: {this.state.product.price}</p>
+            <Typography variant="body1">
+              Price: {this.state.product.price}
             </Typography>
-            <Typography component="p">
-              <p>Rating: {this.state.product.rating}</p>
+            <Typography variant="body1">
+              Rating: {this.state.product.rating}
             </Typography>
-            <Typography component="p">
-              <p>Notes: {this.state.product.note}</p>
+            <Typography variant="body1">
+              Notes: {this.state.product.note}
             </Typography>
-            <Typography component="p">
-              <p>Date Added: {this.state.product.created_at}</p>
+            <Typography variant="body1">
+              Date Added: {this.state.product.created_at}
             </Typography>
-            <IconButton>
-              <Typography component="p">
-                <a href={this.state.product.url}>Buy now</a>
-              </Typography>
-            </IconButton>
+            <Button variant="contained" className="buy">
+            <Link target="_blank" to={this.state.product.url}>Buy Now</Link>
+            </Button>
             <IconButton id={this.state.product.id} onClick={this.deleteProduct}>
               <DeleteIcon />
             </IconButton>
             <IconButton id={this.state.product.id} onClick={this.toggleForm}>
-              <i class="material-icons">border_color</i>
+              <i className="material-icons">border_color</i>
             </IconButton>
           </CardContent>
         </Card>
