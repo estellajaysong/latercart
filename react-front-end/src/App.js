@@ -4,9 +4,10 @@ import axios from 'axios';
 import './App.css';
 // import Navbar from './Navbar.js';
 import Wishlist from './Wishlist.js';
-import WishlistForm from './WishlistForm';
 import LoginForm from './LoginForm.js';
-// import Button from '@material-ui/core/Button';
+import NewWishlistBtn from './NewWishlistBtn.js';
+import { withTheme } from '@material-ui/core/styles';
+
 
 class App extends Component {
   constructor(props) {
@@ -52,7 +53,6 @@ class App extends Component {
   editWishlistName = e => {
     e.persist()
     // if (e.key === 'Enter'){
-      console.log(e.target.value)
       let token = "Bearer " + localStorage.getItem("jwt");
       axios({
         method: 'put', 
@@ -142,17 +142,12 @@ class App extends Component {
     return (
       localStorage.getItem("jwt") ? 
       (<div className="App">
-        {/* < Navbar reloadPage={this.reloadPage}/> */}
         <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
-        <button className="newWishBtn" onClick={this.addWishlist}>
-          + <br/> <div className="newWishBtnFont">New Wishlist</div>
-        </button>
         <div className="wishlists-container">
+          <NewWishlistBtn addWishlist={this.addWishlist}/>
           {this.state.wishlists.map(wishlist => (
-            this.state.currentWishlistId === wishlist.id ? 
-            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> :
-            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist} onChange={this.editWishlistName}/> 
           ))}
         </div>
         </div>
@@ -163,4 +158,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTheme()(App);
