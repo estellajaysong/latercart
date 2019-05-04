@@ -6,6 +6,8 @@ import './App.css';
 import Wishlist from './Wishlist.js';
 import LoginForm from './LoginForm.js';
 import NewWishlistBtn from './NewWishlistBtn.js';
+import { withTheme } from '@material-ui/core/styles';
+
 
 class App extends Component {
   constructor(props) {
@@ -156,4 +158,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTheme()(App);

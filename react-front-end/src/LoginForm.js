@@ -3,8 +3,10 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { withTheme } from '@material-ui/core/styles';
 
-export default class LoginForm extends Component {
+
+class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -60,3 +62,5 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+export default withTheme()(LoginForm)
