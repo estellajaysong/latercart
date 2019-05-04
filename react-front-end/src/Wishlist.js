@@ -15,14 +15,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1, 
-    margin: theme.spacing.unit * 3,
+    flexGrow: 1,    
+    height: 230
   },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    margin: 5
+    margin: 2
   },
 });
 
@@ -34,7 +34,9 @@ class Wishlist extends Component {
       products:[],
       showShareForm: false,
       showDelete: true,
-      currentWishlistId: this.props.wishlist.id
+      currentWishlistId: this.props.wishlist.id,
+      showTitle: true,
+      showEdit: false
     }
     
   }
@@ -54,9 +56,20 @@ class Wishlist extends Component {
     .catch(err => {
       console.log(err)
     })
-}
+  }
+
+  // showEditForm = () => {
+  //   this.setState({
+  //     showEdit: true,
+  //     showTitle: false
+  //   })
+  // }
 
   editWishlistName = () => {
+    this.setState({
+      showEdit: true,
+      showTitle: false
+    })
     this.props.onEdit(this.props.wishlist.id)
   }
 
@@ -80,55 +93,64 @@ class Wishlist extends Component {
   render() {
     
     return (
-      <div className="wishlist" >
+      <div className="wishlist" >  
+        {this.state.showTitle ?
+          <h1 className='title' onClick={this.editWishlistName}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</h1> 
+          : null
+        } 
+        {this.state.showEdit ? 
+          <input className='titleInput' type="text" name="name" placeholder={this.props.wishlist.name} onBlur={this.props.onChange} /> 
+          : null
+        }    
+        <div className={this.props.classes.root} m={6}>
+        <Grid container spacing={16} >
+          {this.state.products.slice(0, 2).map(product => (
+            <Grid item sm={6} key={product.id}>
+            <Paper className={this.props.classes.paper}>
+              <Product product={product} key={product.id} />
+            </Paper>
+            </Grid>
+          ))}
+        </Grid>
+        <Grid container spacing={16} >
+          {this.state.products.slice(2).map(product => (
+            <Grid item sm={6} key={product.id}>
+            <Paper className={this.props.classes.paper}>
+              <Product product={product} key={product.id}/>
+            </Paper>
+            </Grid>
+          ))}
+        </Grid>
+        </div>
+        <footer>
+          <span className="shareButton" onClick={this.openShare}>
+            Share
+          </span>
+
           <Link to={`/wishlists/${this.props.wishlist.id}`}><h1>Go to: </h1> </Link>
-          <h1 onClick={this.editWishlistName}> {this.props.wishlist.name}</h1>
-          <div className={this.props.classes.root} m={6}>
-          <Grid container spacing={11} >
-            {this.state.products.slice(0, 2).map(product => (
-              <Grid item sm={6}>
-              <Paper className={this.props.classes.paper}>
-                <Product product={product} key = {product.id} />
-              </Paper>
-              </Grid>
-            ))}
-          </Grid>
-          <Grid container spacing={11} >
-            {this.state.products.slice(2).map(product => (
-              <Grid item sm={6}>
-              <Paper className={this.props.classes.paper}>
-                <Product product={product} key = {product.id}/>
-              </Paper>
-              </Grid>
-            ))}
-          </Grid>
-          </div>
-          <footer>
-            <span className="shareButton" onClick={this.openShare}>
-              Share
-            </span>
-            {this.state.showDelete ? 
-              <span className="deleteButton" onClick={this.deleteWishlist}>
-                X
-              </span> 
-              : null}
-            <Dialog
-              open={this.state.showShareForm}
-              onClose={this.handleClose}
-              aria-labelledby="form-dialog-title"
-              className="sharePopup"
-            >
-              <DialogTitle id="form-dialog-title">Share "{this.props.wishlist.name}" with Friends</DialogTitle>
-              <DialogContent>
-                <ShareForm wishlist={this.props.wishlist}/> 
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={this.handleClose} color="primary">
-                  Close
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </footer>
+
+          {this.state.showDelete ? 
+            <span className="deleteButton" onClick={this.deleteWishlist}>
+              X
+            </span> 
+            : null}
+          <Dialog
+            open={this.state.showShareForm}
+            onClose={this.handleClose}
+            aria-labelledby="form-dialog-title"
+            className="sharePopup"
+          >
+            <DialogTitle id="form-dialog-title">Share "{this.props.wishlist.name}" with Friends</DialogTitle>
+            <DialogContent>
+              <ShareForm wishlist={this.props.wishlist}/> 
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </footer>
       </div>
     );
   }

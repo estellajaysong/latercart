@@ -52,7 +52,6 @@ class App extends Component {
   editWishlistName = e => {
     e.persist()
     // if (e.key === 'Enter'){
-      console.log(e.target.value)
       let token = "Bearer " + localStorage.getItem("jwt");
       axios({
         method: 'put', 
@@ -151,9 +150,9 @@ class App extends Component {
         </button>
         <div className="wishlists-container">
           {this.state.wishlists.map(wishlist => (
-            this.state.currentWishlistId === wishlist.id ? 
-            <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> :
-            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> 
+            // this.state.currentWishlistId === wishlist.id ? 
+            // <WishlistForm key={wishlist.id} wishlist={wishlist} editWishlistName={this.editWishlistName} onEdit={this.enableEditing} onDelete={this.deleteWishlist}/> :
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist} onChange={this.editWishlistName}/> 
           ))}
         </div>
         </div>
