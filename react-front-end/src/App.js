@@ -7,6 +7,10 @@ import Wishlist from './Wishlist.js';
 import WishlistForm from './WishlistForm';
 import LoginForm from './LoginForm.js';
 // import Button from '@material-ui/core/Button';
+// import { MuiThemeProvider } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 
 class App extends Component {
   constructor(props) {
@@ -142,7 +146,6 @@ class App extends Component {
     return (
       localStorage.getItem("jwt") ? 
       (<div className="App">
-        {/* < Navbar reloadPage={this.reloadPage}/> */}
         <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
         <div className="wishlists">
         <button className="newWishBtn" onClick={this.addWishlist}>
@@ -163,4 +166,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTheme()(App);

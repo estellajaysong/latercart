@@ -6,27 +6,19 @@ import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { withTheme } from '@material-ui/core/styles';
+
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
+    width: 400,
+    margin: '0.5em',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -37,9 +29,6 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 });
 
@@ -71,10 +60,10 @@ class BigWishlist extends Component {
   render() {
     const {classes} = this.props
     return (
-      <div className="bigwishlist">
-        <Link to="/">Back</Link>
+      <React.Fragment>
+      <div className="bigwishlist">        
         {this.state.product.map(prod => (
-          <Card className={classes.card} key={prod.name}>
+          <Card color="primary" className={classes.card} key={prod.name}>
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
             <img className="product-img" src={prod.img_url} alt={prod.name} />
             <CardContent>
@@ -106,8 +95,10 @@ class BigWishlist extends Component {
           </Card>
         ))}
       </div>
+      </React.Fragment>
     );
+    
   }
 }
 
-export default withStyles(styles)(BigWishlist)
+export default withTheme()(withStyles(styles)(BigWishlist))

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import Navbar from './Navbar.js';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { withTheme } from '@material-ui/core/styles';
 
-export default class LoginForm extends Component {
+
+class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -46,7 +46,6 @@ export default class LoginForm extends Component {
   render() {
     return (
       <React.Fragment>
-        < Navbar/>
         <div className="login-container" >   
         <br/><br/>   
           <form onSubmit={this.login}> 
@@ -63,3 +62,5 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+export default withTheme()(LoginForm)

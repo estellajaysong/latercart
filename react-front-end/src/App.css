@@ -16,13 +16,14 @@
 .wishlist h1 {
   text-align: center;
   word-wrap: break-word;
+  color: #653C53;
 }
 
 .newWishBtn {
   background: lightgrey;
+  color:#653C53;
   height: 300px;
   width: 300px;
-  color: purple;
   border: none;
   font-size: 5em;
   cursor: pointer;
@@ -46,7 +47,7 @@
 }
 
 .wishlist input:focus {
-  border: solid 1px purple;
+  border: solid 1px #653C53;
   text-align: center;
   background-color: white;
 }
@@ -70,7 +71,7 @@
   margin: 5px;
   font-size: 25px;
   cursor: pointer;
-  color: rgb(165, 5, 5);
+  color: #FB552F;
   
   font-weight: 900;
 }
@@ -81,7 +82,7 @@
   margin: 5px;
   font-size: 18px;
   cursor: pointer;
-  color: purple;
+  color: #653C53;
   font-weight: 900;
 }
 /* .form-deleteButton {
@@ -115,7 +116,7 @@
   transition: 200ms all ease;
   opacity: 1;
   font-size: 20px;
-  color: purple;
+  color: #653C53;
 }
 
 .login-container {  
@@ -132,5 +133,5 @@
   max-height: 50px;
   max-width: 50px;
   padding-right: 1em;
+  color: #F0C951;
 }
-
