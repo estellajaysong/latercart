@@ -92,7 +92,8 @@ Product.create!({
   price: 85,
   rating: 5,
   note: "note",
-  wishlist_id: 1
+  wishlist_id: 1,
+  bought: true
 })
 
 

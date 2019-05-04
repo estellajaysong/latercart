@@ -16,6 +16,7 @@ import { withTheme } from '@material-ui/core/styles';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const styles = theme => ({
@@ -41,7 +42,8 @@ class BigWishlist extends Component {
     this.state = {
       product: [],
       expanded: false,
-      sortBy: 'newest'
+      sortBy: 'newest',
+      currentPId: null
     }
   }
 
@@ -82,8 +84,40 @@ class BigWishlist extends Component {
     .catch(err => {
       console.log(err)
     })
-  
   };
+
+  handleCheck = id => e => {
+    console.log(id)
+    console.log(e.target.value)
+    const index = this.state.product.findIndex(x => x.id === id)
+    let productsCopy = JSON.parse(JSON.stringify(this.state.product))
+    productsCopy[index].bought = !this.state.product[index].bought
+    this.setState({
+      product: productsCopy,
+    })
+    axios({
+      method: 'put', 
+      url: `/api/products/${id}`,
+      data: {
+        bought: e.target.value,
+        request: "change bought status"
+      },
+    })
+    .then((res) => {
+      console.log(res)
+      // this.setState({
+      //   product: res.data
+      // })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  boughtStatus = id => {
+    const index = this.state.product.findIndex(x => x.id === id)
+    return this.state.product[index].bought
+  }
 
   render() {
     const {classes} = this.props
@@ -104,6 +138,11 @@ class BigWishlist extends Component {
         {this.state.product.map(prod => (
           <Card color="primary" className={classes.card} key={prod.name}>
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
+            <Checkbox
+              checked={this.boughtStatus(prod.id) ? true : false}
+              onChange={this.handleCheck(prod.id)}
+              value={this.boughtStatus(prod.id) ? false : true}
+            />
             <img className="product-img" src={prod.img_url} alt={prod.name} />
             <CardContent>
               <Typography component="p">
