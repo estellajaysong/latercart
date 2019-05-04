@@ -42,8 +42,7 @@ class BigWishlist extends Component {
     this.state = {
       product: [],
       expanded: false,
-      sortBy: 'newest',
-      currentPId: null
+      sortBy: 'newest'
     }
   }
 
@@ -129,7 +128,6 @@ class BigWishlist extends Component {
           <NativeSelect value={this.state.sortBy} name="sort" onChange={this.handleChange}>
             <option value={'newest'}>Newest</option>
             <option value={'rating'}>Rating</option>
-            <option value={'price'}>Price</option>
           </NativeSelect>
         </FormControl>
       </div>

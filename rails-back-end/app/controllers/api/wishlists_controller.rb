@@ -12,20 +12,14 @@ class Api::WishlistsController < ApplicationController
   end
 
   def show
-    # @wishlist = Wishlist.find_by params[:id]
     if params[:request] == "the last 4"
       @products = Product.where(wishlist_id: params[:id]).last(4)
-      render json: @products
     elsif params[:request] == "rating"
-      @products = Product.where(wishlist_id: params[:id]).last(1)
-      render json: @products
-    elsif params[:request] == "price"
-      @products = Product.where(wishlist_id: params[:id]).last(2)
-      render json: @products
+      @products = Product.where(wishlist_id: params[:id]).order("rating DESC")
     else
       @products = Product.where(wishlist_id: params[:id]).order("created_at DESC")
-      render json: @products
     end
+    render json: @products
   end
 
   def create

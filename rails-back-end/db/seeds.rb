@@ -75,9 +75,6 @@ UserWishlist.create!({
 })
 
 UserWishlist.create!({
-  user_id:2,
-  wishlist
-UserWishlist.create!({
   user_id:3,
   wishlist_id:5
 })
@@ -96,10 +93,32 @@ Product.create!({
 
 SiteSelector.create!({
   site_name: "https://www.ikea.com",
-  title_tag: "#name",
-  price_tag: "#price1",
-  img_tag: "#productImg"
+  title_tag: "$('#name').html()",
+  price_tag: "$('#price1').html()",
+  img_tag: "$('#productImg').prop('src')"
 })
+
+SiteSelector.create!({
+  site_name: "https://www.amazon.ca",
+  title_tag: "$('title').html()",
+  price_tag: "$('#priceblock_ourprice').html()",
+  img_tag: "$('#landingImage').prop('src')"
+})
+
+SiteSelector.create!({
+  site_name: "https://www.tentree.ca",
+  title_tag: "$('h1').html()",
+  price_tag: "document.querySelector('#pageContent > div:nth-child(1) > div.container.product-page > div > div.desktop-pull-right.col-md-5 > div.product-info > div.main-product-items > div > span:nth-child(1)').innerHTML",
+  img_tag: "$('#product-image-mobileGallery li:nth-child(1) img').prop('src')"
+})
+
+SiteSelector.create!({
+  site_name: "https://www.lush.ca",
+  title_tag: "$('title').html()",
+  price_tag: "$('meta[itemprop=\"price\"]').prop('content')",
+  img_tag: "$('img[itemprop=\"image\"]').prop('src')"
+})
+
 
 
 puts "Done!"
