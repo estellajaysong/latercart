@@ -10,13 +10,24 @@ chrome.storage.sync.get(['product'], function ({ product }) {
   $("#price").html(popProduct.price)
   $("#img").attr("src", popProduct.img_url)
 
-  // post new product on confirm
   $("#confirm").click(function () {
-
+    
     let title = $("#title").html()
     let price = $("#price").html()
     let img = $("#img").attr("src")
+    let url = product.url
 
+    // if (title !== popProduct.title){
+
+    // }
+
+    // if (price !== popProduct.price){
+      
+    // }
+
+    // if (title !== popProduct.name){
+      
+    // }
     axios({
       method: 'get',
       url: 'http://localhost:3000/api/wishlists',
@@ -85,7 +96,7 @@ chrome.storage.sync.get(['product'], function ({ product }) {
           listIds.forEach((list) => {
             // code for posting a new product 
             axios.post('http://localhost:3000/api/products',
-              { name: title, price: price, img_url: img, wishlist_id: list, rating: rating, note: notes })
+              { name: title, price: price, img_url: img, wishlist_id: list, rating: rating, note: notes, url: url})
               .then(function (response) {
                 console.log(response);
               })
@@ -110,17 +121,26 @@ function changeVal(button, field) {
       $("#imgForm").html(input)
       $(".edit").submit((e) => {
         e.preventDefault()
+        let img_input = $(`.input${+ button}`).val()
+        console.log(img_input)
         $("#imgForm").html(`<img id="img" src=${$(`.input${+ button}`).val()}>`)
       })
     } else {
       $(field).html(input)
       $(".edit").submit((e) => {
         e.preventDefault()
+        if (field === "#title") {
+          let title_input = $(`.input${+ button}`).val()
+          console.log(title_input)
+        } else if (field === "#price") {
+          let price_input = $(`.input${+ button}`).val()
+          console.log(price_input)
+        }
         $(field).html($(`.input${+ button}`).val())
       })
     }
   })
-} 
+}
 changeVal("#editName", "#title")
 changeVal("#editImg", "#img")
 changeVal("#editPrice", "#price")

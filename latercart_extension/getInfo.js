@@ -6,8 +6,9 @@ axios.get('http://localhost:3000/api/site_selectors',
     const prodname = eval(record.title_tag)
     const prodprice = eval(record.price_tag)
     const prodimg = eval(record.img_tag)
+    const produrl = document.location.href
 
-    const product = { name: prodname, price: prodprice, img: prodimg };
+    const product = { name: prodname, price: prodprice, img: prodimg, url: produrl};
 
     chrome.storage.sync.set({ product: product }, () =>
       console.log("product is set"))
