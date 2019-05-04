@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
-// import logo from './img/wishlist.png'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';

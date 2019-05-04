@@ -75,8 +75,9 @@ code {
 } */
 
 .product-img{
-  max-width: 200px;
-  height: auto;
+
+  max-width: 70px;
+  max-height: 70px;
 }
 
 .bigproduct-img{
