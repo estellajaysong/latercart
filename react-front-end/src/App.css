@@ -3,20 +3,21 @@
   justify-content: space-between;
 }
 
+.wishlists-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 .wishlist {
   height: 320px;
   width: 300px;
   margin: 10px;
-  background: lightgrey;
-  font-size: 11px;
-  text-align: left;
+  font-size: 25px;
+  text-align: center;
   float: left;
 }
 
-.wishlist h1 {
-  text-align: center;
-  word-wrap: break-word;
-}
 
 .newWishBtn {
   background: lightgrey;
@@ -39,10 +40,8 @@
   background: none;
   outline: none;
   width: 298px;
-  font-size: 2em;
-  font-weight: 700;
+  font-size: 25px;
   text-align: center;
-  padding-top: 12px;
 }
 
 .wishlist input:focus {
@@ -52,8 +51,7 @@
 }
 
 .wishlist footer {
-  margin-top: -5px;
-  margin-left: 5px;
+  margin: 5px;
 }
 
 .share-container form {
@@ -67,11 +65,10 @@
 .deleteButton {
   visibility: hidden;
   float: right;
-  margin-top: -30px;
+  margin-top: 5px;
   font-size: 25px;
   cursor: pointer;
   color: rgb(165, 5, 5);
-  
   font-weight: 900;
 }
 

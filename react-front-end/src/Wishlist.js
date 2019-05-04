@@ -12,8 +12,17 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import ShareIcon from '@material-ui/icons/Share';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
+  card: {
+    maxWidth: 350,
+    margin: 20,
+    boxShadow: 5
+  },
   root: {
     flexGrow: 1,    
     height: 230
@@ -58,13 +67,6 @@ class Wishlist extends Component {
     })
   }
 
-  // showEditForm = () => {
-  //   this.setState({
-  //     showEdit: true,
-  //     showTitle: false
-  //   })
-  // }
-
   editWishlistName = () => {
     this.setState({
       showEdit: true,
@@ -93,47 +95,49 @@ class Wishlist extends Component {
   render() {
     
     return (
+      <Card className={this.props.classes.card}>
       <div className="wishlist" >  
+
         {this.state.showTitle ?
-          <h1 className='title' onClick={this.editWishlistName}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</h1> 
+          <span className='title' onClick={this.editWishlistName}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</span> 
           : null
         } 
         {this.state.showEdit ? 
           <input className='titleInput' type="text" name="name" placeholder={this.props.wishlist.name} onBlur={this.props.onChange} /> 
           : null
-        }    
+        }   
+        <br/><br/>
+        <Link to={`/wishlists/${this.props.wishlist.id}`}>
         <div className={this.props.classes.root} m={6}>
-        <Grid container spacing={16} >
-          {this.state.products.slice(0, 2).map(product => (
-            <Grid item sm={6} key={product.id}>
-            <Paper className={this.props.classes.paper}>
-              <Product product={product} key={product.id} />
-            </Paper>
-            </Grid>
-          ))}
-        </Grid>
-        <Grid container spacing={16} >
-          {this.state.products.slice(2).map(product => (
-            <Grid item sm={6} key={product.id}>
-            <Paper className={this.props.classes.paper}>
-              <Product product={product} key={product.id}/>
-            </Paper>
-            </Grid>
-          ))}
-        </Grid>
+          <Grid container spacing={16} >
+            {this.state.products.slice(0, 2).map(product => (
+              <Grid item sm={6} key={product.id}>
+              <Paper className={this.props.classes.paper}>
+                <Product product={product} key={product.id} />
+              </Paper>
+              </Grid>
+            ))}
+          </Grid>
+          <Grid container spacing={16} >
+            {this.state.products.slice(2).map(product => (
+              <Grid item sm={6} key={product.id}>
+              <Paper className={this.props.classes.paper}>
+                <Product product={product} key={product.id}/>
+              </Paper>
+              </Grid>
+            ))}
+          </Grid>
         </div>
+        </Link>
         <footer>
-          <span className="shareButton" onClick={this.openShare}>
-            Share
-          </span>
+          <IconButton className="shareButton" aria-label="Share" onClick={this.openShare}>
+            <ShareIcon />
+          </IconButton>
 
-          <Link to={`/wishlists/${this.props.wishlist.id}`}><h1>Go to: </h1> </Link>
+          <IconButton className="deleteButton" aria-label="Delete" onClick={this.deleteWishlist}>
+            <DeleteIcon />
+          </IconButton>
 
-          {this.state.showDelete ? 
-            <span className="deleteButton" onClick={this.deleteWishlist}>
-              X
-            </span> 
-            : null}
           <Dialog
             open={this.state.showShareForm}
             onClose={this.handleClose}
@@ -152,6 +156,8 @@ class Wishlist extends Component {
           </Dialog>
         </footer>
       </div>
+      </Card>
+      
     );
   }
 }
