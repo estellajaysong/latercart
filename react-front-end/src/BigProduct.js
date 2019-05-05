@@ -15,25 +15,13 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
-    maxWidth: 600,
+    maxWidth: 700,
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+ 
 });
 
 class BigProduct extends Component {
@@ -42,13 +30,14 @@ class BigProduct extends Component {
     this.state = {
       product: [],
       currentProductId: null,
+      toggle: false
     }
   }
 
   componentDidMount() {
     axios.get(`/api/products/${this.props.match.params.id}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.setState({
           product: res.data
         })
@@ -68,7 +57,7 @@ class BigProduct extends Component {
 
   toggleForm = (e) => {
     e.preventDefault()
-    this.setState({ currentProductId: e.target.id })
+    this.setState({ currentProductId: this.state.product.id })
     return <ProductForm product={this.state.product} />
   }
 
