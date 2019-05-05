@@ -153,17 +153,13 @@
   flex-wrap: wrap;
 }
 
-.bigwishlist footer{
-  float: right;
-  /* visibility: hidden; */
-}
-
-
-/* .BigWishlist-card-106:hover footer{
-  visibility: visible;
-} */
-
 .MuiButtonBase-root-103 {
   padding-left: -12;
   padding-right: -12;
 } 
+
+.bigWFooter {
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+}

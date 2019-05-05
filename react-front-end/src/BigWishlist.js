@@ -86,10 +86,7 @@ class BigWishlist extends Component {
   };
 
   handleCheck = id => e => {
-    console.log(id)
     let ifBought = (e.target.value === 'true')
-    // console.log(ifBought)
-    // console.log(ifBought ? this.state.currentUserName : null)
     const index = this.state.product.findIndex(x => x.id === id)
     let productsCopy = JSON.parse(JSON.stringify(this.state.product))
     productsCopy[index].bought = !this.state.product[index].bought
@@ -156,7 +153,7 @@ class BigWishlist extends Component {
                 <span>Price: {prod.price}</span>
               </Typography>
             </CardContent>
-            <footer>
+            <footer className="bigWFooter">
               <Rating rating={prod.rating} pid={prod.id}/>
               <FormControlLabel
                 label={this.boughtStatus(prod.id) ? ("Bought by " + this.whoBoughtThis(prod.id)) : 'Mark as "Bought"'}
