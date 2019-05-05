@@ -155,14 +155,15 @@
 
 .bigwishlist footer{
   float: right;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
-.bigwishlist footer{
-  float: right;
-  visibility: hidden;
-}
 
-.BigWishlist-card-106:hover footer{
+/* .BigWishlist-card-106:hover footer{
   visibility: visible;
-}
+} */
+
+.MuiButtonBase-root-103 {
+  padding-left: -12;
+  padding-right: -12;
+} 

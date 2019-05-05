@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :wishlists
     resources :users, only: [:new, :create]
-    resources :products, only: [:index, :new, :create, :show, :update]
+    resources :products
     resources :site_selectors
+    resources :user_wishlists
     
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'

@@ -25,11 +25,7 @@ class Api::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if params[:request] == "change bought status"
-      @product.update_attributes(bought: params[:bought])
-    else
-      @product.update_attributes(product_params)
-    end
+    @product.update_attributes(product_params)
     render json: @wishlist
   end
 
@@ -51,7 +47,9 @@ class Api::ProductsController < ApplicationController
       :price,
       :wishlist_id,
       :rating,
-      :note
+      :note,
+      :bought,
+      :bought_by
     )
   end
 end

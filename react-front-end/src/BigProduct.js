@@ -105,7 +105,7 @@ class BigProduct extends Component {
               <DeleteIcon />
             </IconButton>
             <IconButton id={this.state.product.id} onClick={this.toggleForm}>
-              <i class="material-icons">border_color</i>
+              <i className="material-icons">border_color</i>
             </IconButton>
           </CardContent>
         </Card>
