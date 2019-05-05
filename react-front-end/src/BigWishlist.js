@@ -87,10 +87,14 @@ class BigWishlist extends Component {
 
   handleCheck = id => e => {
     console.log(id)
-    console.log(e.target.value)
+    let ifBought = (e.target.value === 'true')
+    // console.log(ifBought)
+    // console.log(ifBought ? this.state.currentUserName : null)
     const index = this.state.product.findIndex(x => x.id === id)
     let productsCopy = JSON.parse(JSON.stringify(this.state.product))
     productsCopy[index].bought = !this.state.product[index].bought
+    productsCopy[index].bought_by = 'You'
+    console.log(productsCopy[index].bought)
     this.setState({
       product: productsCopy,
     })
@@ -98,8 +102,10 @@ class BigWishlist extends Component {
       method: 'put', 
       url: `/api/products/${id}`,
       data: {
-        bought: e.target.value,
-        bought_by: this.state.currentUserName
+        product: {
+          bought: ifBought,
+          bought_by: ifBought ? this.state.currentUserName : null
+        }
       },
     })
     .then((res) => {
@@ -153,12 +159,12 @@ class BigWishlist extends Component {
             <footer>
               <Rating rating={prod.rating} pid={prod.id}/>
               <FormControlLabel
-                label={this.whoBoughtThis(prod.id) === null ? 'Mark as "Bought"' : ("Bought by " + this.whoBoughtThis(prod.id))}
+                label={this.boughtStatus(prod.id) ? ("Bought by " + this.whoBoughtThis(prod.id)) : 'Mark as "Bought"'}
                 control={
                   <Checkbox
                     checked={this.boughtStatus(prod.id)}
                     onChange={this.handleCheck(prod.id)}
-                    value={!this.boughtStatus(prod.id)}
+                    value={this.boughtStatus(prod.id)? "false" : "true"}
                   />
                 }
               />
