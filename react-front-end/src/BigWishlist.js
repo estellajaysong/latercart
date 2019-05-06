@@ -18,9 +18,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   card: {
-    width: '45%',
+    // width: '45%',
     margin: '0.5em',
     minWidth: 200,
+    maxWidth: 600,
+    minHeight: 450,
     'text-align':'center'
   },
   // expand: {
