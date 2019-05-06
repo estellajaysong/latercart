@@ -81,32 +81,13 @@
   visibility: hidden;
   float: right;
   margin-top: 5px;
-  font-size: 25px;
-  cursor: pointer;
-  color: #FB552F;
-  font-weight: 900;
 }
 
 .shareButton {
   visibility: hidden;
   float: left;
   margin: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #653C53;
-  font-weight: 900;
 }
-/* .form-deleteButton {
-  visibility: hidden;
-  float: right;
-  margin: 5px;
-  font-size: 25px;
-  cursor: pointer;
-  color: rgb(165, 5, 5);
-  margin-top: 180px;
-  font-weight: 900;
-  z-index: 1;
-} */
 
 .wishlist:hover .deleteButton {
   visibility: visible;
