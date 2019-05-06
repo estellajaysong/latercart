@@ -31,7 +31,7 @@ export default class Navbar extends Component {
             <div className="user-info" style={{marginLeft:'80%'}}>
               {this.state.currentUserName}
               {localStorage.getItem("jwt") ? 
-              <Button className="logoutBtn"  onClick={this.logout} style={{color: '#122434'}}>Logout</Button> : null }
+              <Button className="logoutBtn"  onClick={this.logout} style={{color: '#E1B8B1', marginTop:'-3.25px'}}>Logout</Button> : null }
             </div>
           </Toolbar>
         </AppBar>
