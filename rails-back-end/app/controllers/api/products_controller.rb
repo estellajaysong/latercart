@@ -49,7 +49,7 @@ class Api::ProductsController < ApplicationController
       :rating,
       :note,
       :bought,
-      :bought_by
+      :bought_by,
       :url
     )
   end

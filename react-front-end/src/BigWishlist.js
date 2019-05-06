@@ -18,12 +18,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   card: {
-    width: 400,
-    heigtht: 500,
-
-
-const styles = theme => ({
-  card: {
     width: '45%',
     margin: '0.5em',
     minWidth: 200,
@@ -186,7 +180,7 @@ class BigWishlist extends Component {
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
             <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
             <CardContent>
-              <Typography variant="body1"">
+              <Typography variant="body1">
                 <span>Price: {prod.price}</span>
               </Typography>
             </CardContent>
