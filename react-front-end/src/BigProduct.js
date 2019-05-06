@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from "react-router-dom";
 import axios from 'axios';
 import ProductForm from './ProductForm.js';
+import Rating from './Rating.js';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -75,7 +76,7 @@ class BigProduct extends Component {
               Price: {this.state.product.price}
             </Typography>
             <Typography variant="body1">
-              Rating: {this.state.product.rating}
+              <p>Rating:  <Rating rating={this.state.product.rating} pid={this.state.product.id}/></p>
             </Typography>
             <Typography variant="body1">
               Notes: {this.state.product.note}

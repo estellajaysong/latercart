@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "rating"
     t.text     "note"
     t.integer  "wishlist_id"
+    t.boolean  "bought"
+    t.string   "bought_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

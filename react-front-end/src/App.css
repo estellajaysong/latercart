@@ -137,3 +137,29 @@
   color: #F0C951;
 }
 
+.sortByForm {
+  float: right;
+}
+
+.activeCard {
+  visibility: visible;
+}
+.inactiveCard {
+  opacity: 0.5;
+}
+
+.bigwishlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MuiButtonBase-root-103 {
+  padding-left: -12;
+  padding-right: -12;
+} 
+
+.bigWFooter {
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+}

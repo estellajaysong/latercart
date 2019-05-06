@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import Rating from './Rating.js';
+import LoginForm from './LoginForm.js';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { withTheme } from '@material-ui/core/styles';
-// import classnames from 'classnames';
-// import Collapse from '@material-ui/core/Collapse';
-// import IconButton from '@material-ui/core/IconButton';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+const styles = theme => ({
+  card: {
+    width: 400,
+    heigtht: 500,
 
 
 const styles = theme => ({
@@ -39,7 +46,9 @@ class BigWishlist extends Component {
     super(props)
     this.state = {
       product: [],
-      expanded: false
+      expanded: false,
+      sortBy: 'newest',
+      currentUserName: localStorage.getItem("jwt") ? jwtDecode(localStorage.getItem("jwt")).name : null,
     }
   }
 
@@ -87,28 +96,120 @@ class BigWishlist extends Component {
         console.log(err)
       })
   }
+
+  handleSort = e => {
+    console.log(e.target.value)
+    this.setState({
+      sortBy: e.target.value
+    })
+    axios({
+      method: 'get', 
+      url: `/api/wishlists/${this.props.match.params.id}`,
+      params: {
+        request: e.target.value
+      },
+    })
+    .then((res) => {
+      console.log(res)
+      this.setState({
+        product: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  };
+
+  handleCheck = id => e => {
+    let ifBought = (e.target.value === 'true')
+    const index = this.state.product.findIndex(x => x.id === id)
+    let productsCopy = JSON.parse(JSON.stringify(this.state.product))
+    productsCopy[index].bought = !this.state.product[index].bought
+    productsCopy[index].bought_by = 'You'
+    console.log(productsCopy[index].bought)
+    this.setState({
+      product: productsCopy,
+    })
+    axios({
+      method: 'put', 
+      url: `/api/products/${id}`,
+      data: {
+        product: {
+          bought: ifBought,
+          bought_by: ifBought ? this.state.currentUserName : null
+        }
+      },
+    })
+    .then((res) => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  boughtStatus = id => {
+    const index = this.state.product.findIndex(x => x.id === id)
+    return this.state.product[index].bought
+  }
+
+  whoBoughtThis = id => {
+    const index = this.state.product.findIndex(x => x.id === id)
+    if (this.state.product[index].bought_by === this.state.currentUserName) {
+      return "You"
+    } else {
+      return this.state.product[index].bought_by
+    }
+  }
+
+
   render() {
     const {classes} = this.props
     return (
-      <React.Fragment>
+      localStorage.getItem("jwt") ? 
+      (<React.Fragment>
+        <div className="sortByForm">
+          <FormControl>
+            <InputLabel>Sort By</InputLabel>
+            <NativeSelect value={this.state.sortBy} name="sort" onChange={this.handleSort}>
+              <option value={'newest'}>Newest</option>
+              <option value={'rating'}>Rating</option>
+            </NativeSelect>
+          </FormControl>
+        </div>
+      <br/><br/><br/>
       <div className="bigwishlist">        
-        {this.state.product.map((prod) => (
-          <Card color='primary' className={classes.card} key={prod.id}>
+        {this.state.product.map(prod => (
+          <div className={this.boughtStatus(prod.id) ? "inactiveCard" : "activeCard"} key={prod.id}>
+          <Card color="primary" className={classes.card} key={prod.id}>
+
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
             <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
             <CardContent>
-            <h1>{prod.expanded}</h1>
-              <Typography variant="body1">
-                Price: {prod.price}
-              </Typography>
-              <Typography>
-                Rating: 
+              <Typography variant="body1"">
+                <span>Price: {prod.price}</span>
               </Typography>
             </CardContent>
+            <footer className="bigWFooter">
+              <Rating rating={prod.rating} pid={prod.id}/>
+              <FormControlLabel
+                label={this.boughtStatus(prod.id) ? ("Bought by " + this.whoBoughtThis(prod.id)) : 'Mark as "Bought"'}
+                control={
+                  <Checkbox
+                    checked={this.boughtStatus(prod.id)}
+                    onChange={this.handleCheck(prod.id)}
+                    value={this.boughtStatus(prod.id)? "false" : "true"}
+                  />
+                }
+              />
+            </footer>
           </Card>
+          </div>
         ))}
       </div>
-      </React.Fragment>
+      </React.Fragment>) 
+      :
+      (<LoginForm />)
     );
   }
 }

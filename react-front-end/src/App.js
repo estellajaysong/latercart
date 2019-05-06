@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-// import Navbar from './Navbar.js';
 import Wishlist from './Wishlist.js';
 import LoginForm from './LoginForm.js';
 import NewWishlistBtn from './NewWishlistBtn.js';
