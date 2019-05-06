@@ -145,15 +145,16 @@ class BigWishlist extends Component {
         {this.state.product.map(prod => (
           <div className={this.boughtStatus(prod.id) ? "inactiveCard" : "activeCard"} key={prod.id}>
           <Card color="primary" className={classes.card} key={prod.id}>
-
-            <CardHeader  title={<Link to={`/products/${prod.id}`} style={{ textDecoration: 'none', color: '#122434' }} color="primary">{prod.name}</Link>} />
-            <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
-            <CardContent>
-              <Typography style={{color:"#122434"}} type="dark" variant="body1">
-                <span>Price: {prod.price}</span>
-              </Typography>
-            </CardContent>
-            <footer className="bigWFooter">
+            <div className="cardBody" style={{minHeight: '400px'}}>
+              <CardHeader  title={<Link to={`/products/${prod.id}`} style={{ textDecoration: 'none', color: '#122434' }} color="primary">{prod.name}</Link>} />
+              <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
+              <CardContent>
+                <Typography style={{color:"#122434"}} type="dark" variant="body1">
+                  <span>Price: {prod.price}</span>
+                </Typography>
+              </CardContent>
+            </div>
+            <footer className="bigWFooter" >
               <Rating rating={prod.rating} pid={prod.id}/>
               <FormControlLabel
                 label={this.boughtStatus(prod.id) ? ("Bought by " + this.whoBoughtThis(prod.id)) : 'Mark as "Bought"'}

@@ -84,7 +84,7 @@ class ProductForm extends Component {
         <TextField className='input-url' label="URL: " placeholder= {url} id="url" onChange={this.onChange} />
         <br/>
         <br/>
-        <Button variant="outlined" className="editBtn" id={id} onClick={this.editProduct}>
+        <Button variant="contained" className="editBtn" id={id} onClick={this.editProduct} style={{backgroundColor: "#E1B8B1"}}>
          Submit
         </Button>
         </form>
