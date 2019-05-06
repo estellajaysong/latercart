@@ -166,3 +166,9 @@
 .rating-container {
   display: flex;
 }
+
+.nav h5 {
+  font-weight: 900;
+  font-size: 28px;
+  font-family: 'ABeeZee', sans-serif;
+}
