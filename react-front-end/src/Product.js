@@ -5,8 +5,8 @@ export default class Product extends Component {
 
   render() {
     return (
-      <div className="product">
-        <div><img className="product-img" src={this.props.product.img_url} alt={this.props.product.name} /></div>
+      <div className="product" >
+        <img className="product-img" src={this.props.product.img_url} alt={this.props.product.name} />
       </div>)
   }
 }
