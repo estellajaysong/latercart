@@ -17,8 +17,10 @@ import { withTheme } from '@material-ui/core/styles';
 
 const styles = theme => ({
   card: {
-    width: 400,
+    width: '45%',
     margin: '0.5em',
+    minWidth: 200,
+    'text-align':'center'
   },
   // expand: {
   //   transform: 'rotate(0deg)',

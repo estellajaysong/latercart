@@ -47,7 +47,8 @@ class Api::ProductsController < ApplicationController
       :price,
       :wishlist_id,
       :rating,
-      :note
+      :note,
+      :url
     )
   end
 end

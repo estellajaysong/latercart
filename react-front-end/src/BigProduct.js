@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from 'axios';
 import ProductForm from './ProductForm.js';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,7 +15,10 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
-    maxWidth: 700,
+    width:'80%',
+    margin: 'auto',
+    minWidth: 200,
+    'text-align':'center'
   },
   media: {
     height: 0,
@@ -37,7 +40,6 @@ class BigProduct extends Component {
   componentDidMount() {
     axios.get(`/api/products/${this.props.match.params.id}`)
       .then((res) => {
-        // console.log(res.data)
         this.setState({
           product: res.data
         })
@@ -50,7 +52,6 @@ class BigProduct extends Component {
 
   deleteProduct = (e) => {
     e.preventDefault()
-    console.log(this.state.product.id)
     axios.delete(`/api/products/${this.state.product.id}`)
     .then(res => this.props.history.push('/'))
   }
@@ -82,8 +83,9 @@ class BigProduct extends Component {
             <Typography variant="body1">
               Date Added: {this.state.product.created_at}
             </Typography>
-            <Button variant="contained" className="buy">
-            <Link target="_blank" href={this.state.product.url}>Buy Now</Link>
+            <br/>
+            <Button variant="outlined" className="buy">
+            <a rel="noopener noreferrer" target="_blank" href={this.state.product.url}>Buy Now</a>
             </Button>
             <IconButton id={this.state.product.id} onClick={this.deleteProduct}>
               <DeleteIcon />
