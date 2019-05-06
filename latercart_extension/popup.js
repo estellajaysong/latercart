@@ -5,11 +5,14 @@ chrome.storage.sync.get(['product'], function ({ product }) {
   popProduct.name = product.name
   popProduct.img_url = product.img
   popProduct.price = product.price
+  popProduct.state = false
 
   $("#title").html(popProduct.name)
   $("#price").html(popProduct.price)
   $("#img").attr("src", popProduct.img_url)
+  
 
+  
   // post new product on confirm
   $("#confirm").click(function () {
 
