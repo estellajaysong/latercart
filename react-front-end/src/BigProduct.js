@@ -75,9 +75,8 @@ class BigProduct extends Component {
             <Typography variant="body1">
               Price: {this.state.product.price}
             </Typography>
-            <Typography variant="body1" className="rating-container"> 
-                Rating:  
-              <div style={{ marginLeft :'40%'}}>
+            <Typography variant="body1"> 
+              <div style={{ marginLeft :'41%'}}>
                 <Rating rating={this.state.product.rating} pid={this.state.product.id} />
               </div>
             </Typography>
@@ -88,7 +87,7 @@ class BigProduct extends Component {
               Date Added: {this.state.product.created_at}
             </Typography>
             <br/>
-            <Button variant="outlined" className="buy">
+            <Button variant="contained" className="buy" style={{backgroundColor: "#E1B8B1"}}>
             <a rel="noopener noreferrer" target="_blank" href={this.state.product.url}>Buy Now</a>
             </Button>
             <IconButton id={this.state.product.id} onClick={this.deleteProduct}>
