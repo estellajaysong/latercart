@@ -24,7 +24,7 @@ const theme = createMuiTheme({
     "fontFamily": "\"Montserrat\", \"ABeeZee\", sans-serif",
     "fontWeightLight": 300,
     "fontWeightRegular": 400,
-    "fontWeightMedium": 900
+    "fontWeightMedium": 700
    }
 });
 
