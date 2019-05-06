@@ -14,7 +14,7 @@ code {
 }
 
 .material-icons{
-  font-size: 48px
+  font-size: 21px
 }
 
 /* Dropdown Button */
@@ -58,8 +58,13 @@ code {
 /* .dropdown:hover .dropdown-content {display: block;} */
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.userinfo {
+.user-info {
   float:right;
+  text-align: right
+}
+
+.product form {
+  text-align: center
 }
 
 /* .product {
@@ -80,6 +85,10 @@ code {
   max-height: 70px;
 }
 
+.product-img-big-wish{
+  max-width: 200px;
+}
+
 .bigproduct-img{
   max-width: 350px;
   height: auto;
@@ -88,28 +97,5 @@ code {
 .bigwishlist{
   display: flex;
   justify-content: space-around;
-}
-
-/* .BigWishlist-card-106{
-  border-style: solid;
-  border-color: #E1B8B1;
-} */
-
-/* .wishlist {
-  display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-
 }
-
-.bigproduct{
-  background-color: lightgray;
-  width: 900px;
-  z-index: 1;
-  border: 2px solid grey;
-
-}
-
-} */
-

@@ -50,6 +50,7 @@ class Api::ProductsController < ApplicationController
       :note,
       :bought,
       :bought_by
+      :url
     )
   end
 end
