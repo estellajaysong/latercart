@@ -21,7 +21,7 @@ const styles = theme => ({
     // width: '45%',
     margin: '0.5em',
     minWidth: 200,
-    maxWidth: 600,
+    maxWidth: 500,
     minHeight: 450,
     'text-align':'center'
   },
