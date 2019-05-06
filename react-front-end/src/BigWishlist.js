@@ -146,10 +146,10 @@ class BigWishlist extends Component {
           <div className={this.boughtStatus(prod.id) ? "inactiveCard" : "activeCard"} key={prod.id}>
           <Card color="primary" className={classes.card} key={prod.id}>
 
-            <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
+            <CardHeader  title={<Link to={`/products/${prod.id}`} style={{ textDecoration: 'none' }} color="primary">{prod.name}</Link>} />
             <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
             <CardContent>
-              <Typography variant="body1">
+              <Typography color="#122434" type="dark" variant="body1">
                 <span>Price: {prod.price}</span>
               </Typography>
             </CardContent>
