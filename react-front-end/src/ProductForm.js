@@ -68,25 +68,25 @@ class ProductForm extends Component {
       <div className="product" >
       <Card>
         <CardContent>
-          <form>
-        <TextField className='input-name' label="Product name: " placeholder= {name} id="name" onChange={this.onChange} />
-        <br/>
-        <img className="bigproduct-img" src={img_url} alt={name} />
-        <br/>
-        <TextField className='input-img' label="Image URL: " placeholder = {img_url} id="img_url" onChange={this.onChange} />
-        <br/>
-        <TextField className='input-price' label="Price: " placeholder= {price} id="price" onChange={this.onChange} />
-        <br/>
-        <TextField className='input-notes' label="Note: " placeholder= {note} id="note" onChange={this.onChange} />
-        <br/>
-        <TextField className='input-rating' label="Rating: " placeholder= {rating} id="rating" onChange={this.onChange} />
-        <br/>
-        <TextField className='input-url' label="URL: " placeholder= {url} id="url" onChange={this.onChange} />
-        <br/>
-        <br/>
-        <Button variant="contained" className="editBtn" id={id} onClick={this.editProduct} style={{backgroundColor: "#E1B8B1"}}>
-         Submit
-        </Button>
+        <form className="product-edit-form">
+          <TextField className='input-name' label="Product name: " placeholder= {name} id="name" onChange={this.onChange} />
+          <br/>
+          <img className="bigproduct-img" src={img_url} alt={name} />
+          <br/>
+          <TextField className='input-img' label="Image URL: " placeholder = {img_url} id="img_url" onChange={this.onChange} />
+          <br/>
+          <TextField className='input-price' label="Price: " placeholder= {price} id="price" onChange={this.onChange} />
+          <br/>
+          <TextField className='input-notes' label="Note: " placeholder= {note} id="note" onChange={this.onChange} />
+          <br/>
+          <TextField className='input-rating' label="Rating: " placeholder= {rating} id="rating" onChange={this.onChange} />
+          <br/>
+          <TextField className='input-url' label="URL: " placeholder= {url} id="url" onChange={this.onChange} />
+          <br/>
+          <br/>
+          <Button variant="contained" className="editBtn" id={id} onClick={this.editProduct} style={{backgroundColor: "#E1B8B1"}}>
+          Submit
+          </Button>
         </form>
         </CardContent>
       </Card>
