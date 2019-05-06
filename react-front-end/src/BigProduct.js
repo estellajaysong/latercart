@@ -16,16 +16,16 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
-    width:'80%',
+    width: '80%',
     margin: 'auto',
     minWidth: 200,
-    'text-align':'center'
+    'text-align': 'center'
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
- 
+
 });
 
 class BigProduct extends Component {
@@ -54,7 +54,7 @@ class BigProduct extends Component {
   deleteProduct = (e) => {
     e.preventDefault()
     axios.delete(`/api/products/${this.state.product.id}`)
-    .then(res => this.props.history.push('/'))
+      .then(res => this.props.history.push('/'))
   }
 
   toggleForm = (e) => {
@@ -68,15 +68,15 @@ class BigProduct extends Component {
     return (
       <div className="bigproduct" color="primary">
         {this.state.currentProductId && <ProductForm product={this.state.product} />}
-        {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name}>
-          <CardHeader title={this.state.product.name} style={{color: '#122434'}}/>
+        {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name} style={{'margin-top':'2em','margin-bottom':'2em'}}>
+          <CardHeader title={this.state.product.name} style={{ color: '#122434' }} />
           <img className="bigproduct-img" src={this.state.product.img_url} alt={this.state.product.name} />
           <CardContent>
             <Typography variant="body1">
               Price: {this.state.product.price}
             </Typography>
-            <Typography variant="body1"> 
-              <div style={{ marginLeft :'43%'}}>
+            <Typography variant="body1">
+              <div style={{ marginLeft: '43%' }}>
                 <Rating rating={this.state.product.rating} pid={this.state.product.id} />
               </div>
             </Typography>
