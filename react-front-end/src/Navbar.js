@@ -26,7 +26,7 @@ export default class Navbar extends Component {
         <AppBar position="static" className="nav">
           <Toolbar >
           <Link to="/" style={{ textDecoration: 'none' }}><Typography variant="h5" >
-          <span style={{color: '#F0C951'}}>later</span><span style={{color: '#122434'}}>cart</span>
+          <span style={{color: '#F0C951'}}>later</span><span style={{color: 'white'}}>cart</span>
             </Typography></Link>
             <div className="user-info" style={{marginLeft:'80%'}}>
               {this.state.currentUserName}
