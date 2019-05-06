@@ -76,7 +76,7 @@ class BigProduct extends Component {
               Price: {this.state.product.price}
             </Typography>
             <Typography variant="body1"> 
-              <div style={{ marginLeft :'41%'}}>
+              <div style={{ marginLeft :'45%'}}>
                 <Rating rating={this.state.product.rating} pid={this.state.product.id} />
               </div>
             </Typography>

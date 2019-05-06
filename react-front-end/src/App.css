@@ -26,18 +26,21 @@
 
 .newWishBtn {
   /* background: #E1B8B1; */
-  color:#653C53;
+  color:#F0C951;
   height: 320px;
   width: 300px;
   border: none;
-  font-size: 5em;
+  font-size: 6em;
   cursor: pointer;
   margin: 10px;
   float: left;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .newWishBtnFont {
   font-size: 20px;
+  font-weight: bold;
+  color:#653C53;
 }
 
 .wishlist input {
@@ -47,6 +50,13 @@
   width: 298px;
   font-size: 25px;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wishlist .title {
+  font-size: 25px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .wishlist input:focus {
@@ -111,6 +121,8 @@
   opacity: 0;
   will-change: opacity;
   font-size: 20px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .showNotification {
@@ -118,6 +130,8 @@
   opacity: 1;
   font-size: 20px;
   color: #653C53;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .login-container {  
@@ -127,7 +141,7 @@
 .login-container input{  
   width: 450px
 }
-
+/* 
 .logo{  
   height: auto;
   width: auto;
@@ -135,7 +149,7 @@
   max-width: 50px;
   padding-right: 1em;
   color: #F0C951;
-}
+} */
 
 .sortByForm {
   float: right;
@@ -157,14 +171,6 @@
   padding: 0 8px;
   display: flex;
   justify-content: space-between;
-}
-
-.loginBtn {
-  color: #E1B8B1
-}
-
-.rating-container {
-  display: flex;
 }
 
 .nav h5 {
