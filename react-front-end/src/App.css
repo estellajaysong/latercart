@@ -120,7 +120,11 @@
 }
 
 .login-container input{  
-  width: 450px
+  width: 450px;
+}
+
+.product-edit-form input{
+  width: 450px;
 }
 /* 
 .logo{  
