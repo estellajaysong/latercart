@@ -88,7 +88,7 @@ class BigProduct extends Component {
             </Typography>
             <br/>
             <Button variant="contained" className="buy" style={{backgroundColor: "#E1B8B1"}}>
-            <a rel="noopener noreferrer" target="_blank" href={this.state.product.url}>Buy Now</a>
+            <a rel="noopener noreferrer" target="_blank" href={this.state.product.url} style={{ textDecoration: 'none', color: '#122434' }}>Buy Now</a>
             </Button>
             <IconButton id={this.state.product.id} onClick={this.deleteProduct}>
               <DeleteIcon />

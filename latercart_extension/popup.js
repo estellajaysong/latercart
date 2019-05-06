@@ -20,7 +20,7 @@ chrome.storage.sync.get(['product'], function ({ product }) {
     axios({
       method: 'get',
       url: 'http://localhost:3000/api/wishlists',
-      headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTcyNTMyMDksInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.xkfpdW-MQpVZ9M4xCN5ns7pNO6Fr1X4yKvzxnozUnNI" }
+      headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTgwNDE4NDEsInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.P73WnDQqQLgCuEHk9wMoD-shEmNe2Bj4UwjJ9TNfo6g" }
     })
       .then(response => {
         //generate user lists with checkboxes
