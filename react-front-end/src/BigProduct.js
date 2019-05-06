@@ -69,7 +69,7 @@ class BigProduct extends Component {
       <div className="bigproduct" color="primary">
         {this.state.currentProductId && <ProductForm product={this.state.product} />}
         {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name}>
-          <CardHeader title={this.state.product.name} color="4"/>
+          <CardHeader title={this.state.product.name} style={{color: '#122434'}}/>
           <img className="bigproduct-img" src={this.state.product.img_url} alt={this.state.product.name} />
           <CardContent>
             <Typography variant="body1">

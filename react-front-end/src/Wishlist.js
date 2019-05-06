@@ -99,7 +99,7 @@ class Wishlist extends Component {
       <div className="wishlist" >  
 
         {this.state.showTitle ?
-          <span className='title' onClick={this.editWishlistName}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</span> 
+          <span className='title' onClick={this.editWishlistName} style={{color: '#122434'}}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</span> 
           : null
         } 
         {this.state.showEdit ? 
