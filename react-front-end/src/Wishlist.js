@@ -21,7 +21,7 @@ const styles = theme => ({
   card: {
     maxWidth: 350,
     margin: 20,
-    boxShadow: 5
+    boxShadow: 5,
   },
   root: {
     flexGrow: 1,    

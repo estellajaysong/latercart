@@ -178,7 +178,7 @@ class BigWishlist extends Component {
         {this.state.product.map(prod => (
           <div className={this.boughtStatus(prod.id) ? "inactiveCard" : "activeCard"} key={prod.id}>
           <Card color="primary" className={classes.card} key={prod.id}>
-
+            <div className="cardBody" style={{minHeight: '400px'}}>
             <CardHeader title={<Link to={`/products/${prod.id}`}>{prod.name}</Link>} />
             <img className="product-img-big-wish" src={prod.img_url} alt={prod.name} />
             <CardContent>
@@ -186,7 +186,8 @@ class BigWishlist extends Component {
                 <span>Price: {prod.price}</span>
               </Typography>
             </CardContent>
-            <footer className="bigWFooter">
+            </div>
+            <footer className="bigWFooter" >
               <Rating rating={prod.rating} pid={prod.id}/>
               <FormControlLabel
                 label={this.boughtStatus(prod.id) ? ("Bought by " + this.whoBoughtThis(prod.id)) : 'Mark as "Bought"'}

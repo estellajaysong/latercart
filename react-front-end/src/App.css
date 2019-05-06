@@ -25,7 +25,7 @@
 }
 
 .newWishBtn {
-  background: lightgrey;
+  /* background: #E1B8B1; */
   color:#653C53;
   height: 320px;
   width: 300px;
@@ -158,4 +158,12 @@
   padding: 0 8px;
   display: flex;
   justify-content: space-between;
+}
+
+.loginBtn {
+  color: #E1B8B1
+}
+
+.rating-container {
+  display: flex;
 }

@@ -140,12 +140,12 @@ class App extends Component {
     return (
       localStorage.getItem("jwt") ? 
       (<div className="App">
-        <div className={this.state.notification ? 'showNotification':'noNotification'}>New title saved!</div>
+        <div className={this.state.notification ? 'showNotification':'noNotification'} >New title saved!</div>
         <div className="wishlists">
         <div className="wishlists-container">
           <NewWishlistBtn addWishlist={this.addWishlist}/>
           {this.state.wishlists.map(wishlist => (
-            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist} onChange={this.editWishlistName}/> 
+            <Wishlist key={wishlist.id} wishlist={wishlist} onEdit={this.enableEditing} onDelete={this.deleteWishlist} onChange={this.editWishlistName} /> 
           ))}
         </div>
         </div>
