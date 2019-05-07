@@ -4,17 +4,17 @@ axios.get('http://localhost:3000/api/site_selectors',
   .then(function (response) {
     let record = response.data[0];
     if (record){ 
-    const prodname = eval(record.title_tag);
-    const prodprice = eval(record.price_tag);
-    const prodimg = eval(record.img_tag)
-    const produrl = document.location.href
+    var prodname = eval(record.title_tag);
+    var prodprice = eval(record.price_tag);
+    var prodimg = eval(record.img_tag)
+    var produrl = document.location.href
     } else {
-    const prodname = $('title').html() ? $('title').html()
+    var prodname = $('title').html() ? $('title').html()
                  : $('h1').html() ? $('h1').html()
                  : "not found"
-    const prodprice = $('.price').html() ? $('.price').html() 
+    var prodprice = $('.price').html() ? $('.price').html() 
                  : "not found"
-    const prodimg = "not found"
+    var prodimg = "not found"
     }
 
     const product = { name: prodname, price: prodprice, img: prodimg, url: produrl};
