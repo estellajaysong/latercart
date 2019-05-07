@@ -29,9 +29,12 @@ setTimeout(() => {
     popProduct.img_url = product.img
     popProduct.price = product.price
   
+    $("#loading").css("display", "none")
     $("#title").html(popProduct.name)
     $("#price").html(popProduct.price)
     $("#img").attr("src", popProduct.img_url)
+    $("#confirm").css("display", "inline-block")
+    $(".editIcon").css("display", "inline")
   
   
     console.log("set values")
@@ -47,6 +50,7 @@ setTimeout(() => {
       let price = $("#price").html()
       let img = $("#img").attr("src")
       let url = product.url
+
   
       if (img !== popProduct.img_url) {
         chrome.storage.sync.set({ price_input: img }, () =>
