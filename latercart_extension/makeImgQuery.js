@@ -352,8 +352,12 @@ chrome.storage.sync.get(['price_input'], function ({ price_input }) {
   }).call(this);
 
   let length = $(`:contains(${price_input}):not(:has(:contains(${price_input})))`).length
-  console.log(length)
-  let htmlElement = $(`:contains(${price_input}):not(:has(:contains(${price_input})))`)[0];
+  let index = 0
+  if (length > 1){
+    index = 1
+  }
+  // let htmlElement = $(`:contains(${price_input}):not(:has(:contains(${price_input})))`)[index];
+  let htmlElement = $(`:contains(${price_input})`)[index];
   
   selector_generator = new CssSelectorGenerator;
 
