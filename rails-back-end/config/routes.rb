@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :products
     resources :site_selectors
     resources :user_wishlists
+
     
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'

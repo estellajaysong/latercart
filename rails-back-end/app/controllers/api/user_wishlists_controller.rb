@@ -13,7 +13,12 @@ class Api::UserWishlistsController < ApplicationController
     @mailUser.user_wishlists.create({
       wishlist_id: params[:info][:wishlist_id]
     }) 
-    UserMailer.share_wishlist_email(@mailUser, current_user).deliver_now
+    @sharedWishlist = Product.where(wishlist_id: params[:info][:wishlist_id])
+    @wishlistName = Wishlist.find_by(id: params[:info][:wishlist_id])
+    @wishlistURL = "http://localhost:3000/wishlists/#{params[:info][:wishlist_id]}"
+    puts ">>>>>>>>>>>>> #{@wishlistURL}"
+    
+    UserMailer.share_wishlist_email(@mailUser, current_user, @sharedWishlist, @wishlistName.name, @wishlistURL).deliver_now
     # render json: @newUserWishlist
   end
 

@@ -20,7 +20,7 @@ const styles = theme => ({
   card: {
     // width: '45%',
     margin: '0.5em',
-    minWidth: 200,
+    minWidth: 350,
     maxWidth: 500,
     minHeight: 450,
     'text-align':'center'
