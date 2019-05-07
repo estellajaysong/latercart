@@ -1,7 +1,10 @@
 class UserMailer < ApplicationMailer
-  def share_wishlist_email(user, sender)
+  def share_wishlist_email(user, sender, wishlist, name, url)
     @mailUser = user
     @sender = sender
-    mail(to: @mailUser.email, subject: "You are invited to #{@sender.username}'s awesome wishlist")
+    @sharedwishlist = wishlist
+    @wishlistName = name
+    @wishlistURL = url
+    mail(to: @mailUser.email, subject: "You are invited to #{@sender.username}'s #{@wishlistName} wishlist")
   end
 end

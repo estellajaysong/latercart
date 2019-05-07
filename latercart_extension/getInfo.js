@@ -3,6 +3,7 @@ axios.get('http://localhost:3000/api/site_selectors',
   { params: { site_name: document.location.origin } })
   .then(function (response) {
     let record = response.data[0];
+  
     if (record){ 
     var prodname = eval(record.title_tag);
     var prodprice = eval(record.price_tag);
@@ -25,5 +26,3 @@ axios.get('http://localhost:3000/api/site_selectors',
   .catch(function (error) {
     console.log(error);
   });
-
-

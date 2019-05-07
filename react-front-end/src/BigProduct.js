@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from 'axios';
 import ProductForm from './ProductForm.js';
+import Rating from './Rating.js';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -11,30 +12,20 @@ import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { withTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Link } from "react-router-dom";
 
 
 const styles = theme => ({
   card: {
-    maxWidth: 600,
+    width: '80%',
+    margin: 'auto',
+    minWidth: 200,
+    'text-align': 'center'
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+
 });
 
 class BigProduct extends Component {
@@ -43,13 +34,13 @@ class BigProduct extends Component {
     this.state = {
       product: [],
       currentProductId: null,
+      toggle: false
     }
   }
 
   componentDidMount() {
     axios.get(`/api/products/${this.props.match.params.id}`)
       .then((res) => {
-        // console.log(res.data)
         this.setState({
           product: res.data
         })
@@ -62,15 +53,14 @@ class BigProduct extends Component {
 
   deleteProduct = (e) => {
     e.preventDefault()
-    axios.delete(`/api/products/${e.target.id}`)
-      .then(<Redirect to="/"></Redirect>)
+    axios.delete(`/api/products/${this.state.product.id}`)
+      .then(res => this.props.history.push('/'))
   }
 
   toggleForm = (e) => {
     e.preventDefault()
-    this.setState({ currentProductId: e.target.id })
+    this.setState({ currentProductId: this.state.product.id })
     return <ProductForm product={this.state.product} />
-    // <Link to={`/wishlists/${this.state.product.wishlist_id}`}><Button variant="contained" color="primary.light">Back to Wishlist</Button></Link>
   }
 
   render() {
@@ -78,15 +68,17 @@ class BigProduct extends Component {
     return (
       <div className="bigproduct" color="primary">
         {this.state.currentProductId && <ProductForm product={this.state.product} />}
-        {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name}>
-          <CardHeader title={this.state.product.name} color="4"/>
+        {!this.state.currentProductId && <Card color="primary" className={classes.card} key={this.state.product.name} style={{'margin-top':'2em','margin-bottom':'2em'}}>
+          <CardHeader title={this.state.product.name} style={{ color: '#122434' }} />
           <img className="bigproduct-img" src={this.state.product.img_url} alt={this.state.product.name} />
           <CardContent>
             <Typography variant="body1">
               Price: {this.state.product.price}
             </Typography>
             <Typography variant="body1">
-              Rating: {this.state.product.rating}
+              <div style={{ marginLeft: '43%' }}>
+                <Rating rating={this.state.product.rating} pid={this.state.product.id} />
+              </div>
             </Typography>
             <Typography variant="body1">
               Notes: {this.state.product.note}
@@ -94,8 +86,9 @@ class BigProduct extends Component {
             <Typography variant="body1">
               Date Added: {this.state.product.created_at}
             </Typography>
-            <Button variant="contained" className="buy">
-            <Link target="_blank" to={this.state.product.url}>Buy Now</Link>
+            <br/>
+            <Button variant="contained" className="buy" style={{backgroundColor: "#E1B8B1"}}>
+            <a rel="noopener noreferrer" target="_blank" href={this.state.product.url} style={{ textDecoration: 'none', color: '#122434' }}>Buy Now</a>
             </Button>
             <IconButton id={this.state.product.id} onClick={this.deleteProduct}>
               <DeleteIcon />

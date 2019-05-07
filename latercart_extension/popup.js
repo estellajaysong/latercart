@@ -36,14 +36,6 @@ setTimeout(() => {
     $("#confirm").css("display", "inline-block")
     $(".editIcon").css("display", "inline")
   
-  
-    console.log("set values")
-    console.log($("#title").html())
-    console.log(product.name)
-    // if ( $("#title").html() !== product.name){
-    //   window.location.reload();
-    // }
-  
     $("#confirm").click(function () {
   
       let title = $("#title").html()
@@ -52,15 +44,15 @@ setTimeout(() => {
       let url = product.url
 
   
-      if (img !== popProduct.img_url) {
-        chrome.storage.sync.set({ price_input: img }, () =>
-          console.log("img_input set"))
+      if (price !== popProduct.price) {
+        chrome.storage.sync.set({ price_input: price }, () =>
+          console.log("price_input set"))
   
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
           chrome.tabs.executeScript(
             tabs[0].id,
             {
-              file: 'makeQuery.js'
+              file: 'makePriceQuery.js'
             });
         });
   
@@ -80,7 +72,7 @@ setTimeout(() => {
     axios({
       method: 'get',
       url: 'http://localhost:3000/api/wishlists',
-      headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTcyNjAyNzAsInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.YUCQj_aVf2iKY-13S4SBnf_Bmf0FbMEWTXaQM0yevOg" }
+      headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTczNDk2NTMsInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.jNoDnskdlnY2EpJMtP_dx6GbbAQq4OjgRwVWgOdn7Jc" }
     })
       .then(response => {
         //generate user lists with checkboxes
@@ -169,18 +161,21 @@ setTimeout(() => {
   function changeVal(button, field) {
     $(button).click(() => {
       let input = `<form class='edit'><input class='input${+ button}' type='text'></form>`
+      $(".editIcon").css("display", "none")
       if (field === "#img") {
         $("#imgForm").html(input)
         $(".edit").submit((e) => {
           e.preventDefault()
+          $(".editIcon").css("display", "inline")
           let img_input = $(`.input${+ button}`).val()
           console.log(img_input)
-          $("#imgForm").html(`<img id="img" src=${$(`.input${+ button}`).val()}>`)
+          $("#imgForm").html(`<img id="img" src=${$(`.input${+ button}`).val()}><img id="editImg" class="editIcon" src="/images/pencil.png">`)
         })
       } else {
         $(field).html(input)
         $(".edit").submit((e) => {
           e.preventDefault()
+          $(".editIcon").css("display", "inline")
           if (field === "#title") {
             let title_input = $(`.input${+ button}`).val()
             console.log(title_input)
@@ -199,4 +194,4 @@ setTimeout(() => {
   
   
   console.log("end of script")
-}, 1000)
+}, 1500)

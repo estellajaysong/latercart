@@ -48,6 +48,8 @@ class Api::ProductsController < ApplicationController
       :wishlist_id,
       :rating,
       :note,
+      :bought,
+      :bought_by,
       :url
     )
   end

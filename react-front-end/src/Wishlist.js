@@ -21,7 +21,7 @@ const styles = theme => ({
   card: {
     maxWidth: 350,
     margin: 20,
-    boxShadow: 5
+    boxShadow: 5,
   },
   root: {
     flexGrow: 1,    
@@ -99,7 +99,7 @@ class Wishlist extends Component {
       <div className="wishlist" >  
 
         {this.state.showTitle ?
-          <span className='title' onClick={this.editWishlistName}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</span> 
+          <span className='title' onClick={this.editWishlistName} style={{color: '#122434'}}> {this.props.wishlist.name ? this.props.wishlist.name : "My Wishlist"}</span> 
           : null
         } 
         {this.state.showEdit ? 
@@ -112,7 +112,7 @@ class Wishlist extends Component {
           <Grid container spacing={16} >
             {this.state.products.slice(0, 2).map(product => (
               <Grid item sm={6} key={product.id}>
-              <Paper className={this.props.classes.paper}>
+              <Paper className={this.props.classes.paper} style={{minHeight: '75px', minWidth: '105px'}}>
                 <Product product={product} key={product.id} />
               </Paper>
               </Grid>
@@ -121,7 +121,7 @@ class Wishlist extends Component {
           <Grid container spacing={16} >
             {this.state.products.slice(2).map(product => (
               <Grid item sm={6} key={product.id}>
-              <Paper className={this.props.classes.paper}>
+              <Paper className={this.props.classes.paper} style={{minHeight: '75px', minWidth: '105px'}}>
                 <Product product={product} key={product.id}/>
               </Paper>
               </Grid>
@@ -130,7 +130,7 @@ class Wishlist extends Component {
         </div>
         </Link>
         <footer>
-          <IconButton className="shareButton" aria-label="Share" onClick={this.openShare}>
+          <IconButton className="shareButton" aria-label="Share" onClick={this.openShare} >
             <ShareIcon />
           </IconButton>
 
