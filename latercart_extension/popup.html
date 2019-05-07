@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=ABeeZee%7CMontserrat" rel="stylesheet">
@@ -8,7 +7,9 @@
 </head>
 
 <body>
+
   <div id="firstPage" style="display:block;">
+    <img id="loading" src="/images/loading.gif">
   <div>
     <h2 id="title"></h2><img id="editName" class="editIcon" src="/images/pencil.png">
   </div>
@@ -16,7 +17,7 @@
   <div>
     <h2 id="price"></h2><img id="editPrice" class="editIcon" src="/images/pencil.png">
   </div>
-  <button id='confirm'>Confirm</button>
+  <button id='confirm' style="display:none;">Confirm</button>
 </div>
 
 <div id="secondPage" style="display:none">
@@ -40,7 +41,6 @@
   <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="main.js"></script>
   <script src="popup.js"></script>
 
 </body>

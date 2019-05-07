@@ -105,6 +105,13 @@ SiteSelector.create!({
 })
 
 SiteSelector.create!({
+  site_name: "https://www.ikea.com",
+  title_tag: "$('#name').html()",
+  price_tag: "$('#price1').html()",
+  img_tag: "$('#productImg').prop('src')"
+})
+
+SiteSelector.create!({
   site_name: "https://www.amazon.ca",
   title_tag: "$('title').html()",
   price_tag: "$('#priceblock_ourprice').html()",
