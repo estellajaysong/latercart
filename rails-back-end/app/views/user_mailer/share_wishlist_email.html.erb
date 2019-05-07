@@ -1,5 +1,22 @@
-<h1>Welcome to <%= @sender.username %>'s Wishlist, <%= @mailUser.username %></h1>
-  <p>
-    View the wishlist <a href="http://localhost:3000/">here</a>.
-  </p>
-<p>Thanks and have a great day!</p>
+<span style="color: #F0C951; font-family: 'ABeeZee', sans-serif; font-weight: bold; font-size: 50px">later</span><span style="color: #122434; font-family: 'ABeeZee', sans-serif; font-weight: bold; font-size: 50px">cart</span>
+<h2>Welcome to <%= @sender.username %>'s Wishlist, <%= @mailUser.username %></h2>
+  <table style="width:90%; color: #122434; font-family: 'Montserrat', sans-serif;">
+    <tr style="text-align:left">
+      <th>Image</th>
+      <th>Product Name</th> 
+      <th>Price</th>
+    </tr>
+    <% @sharedwishlist.each do |p|%>
+      <tr style="text-align:left">
+        <td><img src="<%= p.img_url %>" alt="Smiley face" height="80" width="80"></td>
+        <td>Name: <%= p.name %></td>
+        <td>Price: <%= p.price %></td> 
+      </tr>
+    <% end %>
+  </table>
+
+    
+<h4>
+  View the wishlist <a href="http://localhost:3000/">here</a>.
+  Thanks and have a great day!
+</h4>

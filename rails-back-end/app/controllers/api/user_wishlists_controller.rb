@@ -13,7 +13,9 @@ class Api::UserWishlistsController < ApplicationController
     @mailUser.user_wishlists.create({
       wishlist_id: params[:info][:wishlist_id]
     }) 
-    UserMailer.share_wishlist_email(@mailUser, current_user).deliver_now
+    @sharedWishlist = Product.where(wishlist_id: params[:info][:wishlist_id])
+    puts ">>>>>>>>>>>>> #{@sharedWishlist.map{|p|{name: p.name, img: p.img_url, price: p.price}}}"
+    UserMailer.share_wishlist_email(@mailUser, current_user, @sharedWishlist).deliver_now
     # render json: @newUserWishlist
   end
 

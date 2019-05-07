@@ -39,6 +39,12 @@ user3 = User.create!({
   password: 'k'
 })
 
+user4 = User.create!({
+  username: 'Xia',
+  email: 'dongxiapp@gmail.com',
+  password: 'x'
+})
+
 puts "Creating wishlists..."
 
 Wishlist.create!({
