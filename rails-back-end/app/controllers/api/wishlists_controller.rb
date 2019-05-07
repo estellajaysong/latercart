@@ -13,7 +13,7 @@ class Api::WishlistsController < ApplicationController
 
   def show
     if params[:request] == "the last 4"
-      @products = Product.where(wishlist_id: params[:id]).last(4)
+      @products = Product.where(wishlist_id: params[:id]).last(4).reverse
     elsif params[:request] == "rating"
       @products = Product.where(wishlist_id: params[:id]).order("rating DESC")
     else
