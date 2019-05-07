@@ -24,14 +24,14 @@ export default class Navbar extends Component {
   render() {
     return (
         <AppBar position="static" className="nav">
-          <Toolbar>
-          <Link to="/"><Typography variant="h5" style={{flexGrow: 3}}>
-              LaterCart
+          <Toolbar >
+          <Link to="/" style={{ textDecoration: 'none' }}><Typography variant="h5" >
+          <span style={{color: '#F0C951'}}>later</span><span style={{color: 'white'}}>cart</span>
             </Typography></Link>
-            <div className="user-info">
+            <div className="user-info" style={{marginLeft:'80%'}}>
               {this.state.currentUserName}
               {localStorage.getItem("jwt") ? 
-              <Button className="logoutBtn"  onClick={this.logout}>Logout</Button> : null }
+              <Button className="logoutBtn"  onClick={this.logout} style={{color: '#E1B8B1', marginTop:'-3.25px'}}>Logout</Button> : null }
             </div>
           </Toolbar>
         </AppBar>

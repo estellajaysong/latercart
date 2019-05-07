@@ -53,7 +53,7 @@ class LoginForm extends Component {
             <br/><br/>
             <TextField className='input' name="password" label='Your Password' />
             <br/><br/>
-            <Button type='submit' variant="outlined" className="loginBtn" >
+            <Button type='submit' variant="contained" style={{backgroundColor: "#E1B8B1"}} >
               Login 
             </Button>
           </form>

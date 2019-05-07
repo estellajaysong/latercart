@@ -9,15 +9,7 @@ class Api::SiteSelectorsController < ApplicationController
   # end
 
   # def create
-  #   @product = Product.new(product_params)
-
-  #   if @product.save
-  #     puts "product saved"
-  #   else
-  #     puts "product not saved"
-  #   end
-  # end
-
+  
   def site_selector_params
     params.require(:site_selector).permit(
       :site_name,
@@ -26,5 +18,4 @@ class Api::SiteSelectorsController < ApplicationController
       :img_tag,
     )
   end
-  
 end

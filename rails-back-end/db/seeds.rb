@@ -39,6 +39,12 @@ user3 = User.create!({
   password: 'k'
 })
 
+user4 = User.create!({
+  username: 'Xia',
+  email: 'dongxiapp@gmail.com',
+  password: 'x'
+})
+
 puts "Creating wishlists..."
 
 Wishlist.create!({
@@ -87,7 +93,15 @@ Product.create!({
   price: 85,
   rating: 5,
   note: "note",
-  wishlist_id: 1
+  wishlist_id: 1,
+  bought: true
+})
+
+SiteSelector.create!({
+  site_name: "https://www.ikea.com",
+  title_tag: "$('#name').html()",
+  price_tag: "$('#price1').html()",
+  img_tag: "$('#productImg').prop('src')"
 })
 
 SiteSelector.create!({

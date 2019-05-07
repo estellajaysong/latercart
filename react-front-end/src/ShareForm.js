@@ -82,7 +82,7 @@ export default class ShareForm extends Component {
         <form onSubmit={this.shareWishlist}> 
           <TextField className='input' name="email" label="Your Friend's Email Address" value={this.state.sendToEmail} onChange={this.onHandleChange}/>
           <br/><br/>
-          <Button type='submit' className="shareBtn" variant="outlined" onClick={this.addToSharedList}>
+          <Button type='submit' className="shareBtn" variant="contained" onClick={this.addToSharedList} style={{backgroundColor: "#E1B8B1"}}>
             Share 
           </Button>
         </form>
