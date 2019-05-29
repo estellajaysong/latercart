@@ -7,20 +7,21 @@ chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
          actions: [new chrome.declarativeContent.ShowPageAction()]
    }]);
  });
+// let userToken = 'token';
 
- chrome.runtime.onMessageExternal.addListener(
+chrome.runtime.onMessageExternal.addListener(
   function(request, sender, sendResponse) {
     if (request.token) {
       console.log(request.token);
-      let userToken = request.token;
-      // const port = chrome.runtime.connect({name: "knockknock"});
-      // port.postMessage({userToken: request.token});
-      // port.onMessage.addListener(function(msg) {
-      //   if (msg.question == "Who's there?")
-      //     port.postMessage({answer: "Madame"});
-      //   else if (msg.question == "Madame who?")
-      //     port.postMessage({answer: "Madame... Bovary"});
-      // });
+      // userToken = request.token;
+      chrome.extension.onConnect.addListener(function(port) {
+        console.log("Connected .....");
+        port.onMessage.addListener(function(msg) {
+             console.log("message recieved" + msg);
+             port.postMessage(request.token);
+        });
+      })
     }
-  });
+});
 
+  

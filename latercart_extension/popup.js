@@ -88,6 +88,26 @@ setTimeout(() => {
         }, 1500);
       }
 
+    //   //document.addEventListener('DOMContentLoaded', function () {
+    //     var bg = chrome.extension.getBackgroundPage();
+    //     console.log('bg: ', bg)
+    //      var userToken = bg.foo('222');
+    //     console.log('token: ', userToken)
+     
+    //  //})
+    
+    let userToken = '0';
+
+    const port = chrome.extension.connect({
+      name: "Sample Communication"
+    });
+    port.postMessage("Hi BackGround");
+    port.onMessage.addListener(function(msg) {
+      console.log("message recieved" + msg);
+      userToken = msg
+    });
+
+    console.log(userToken)
     
       axios({
         method: 'get',
