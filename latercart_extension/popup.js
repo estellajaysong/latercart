@@ -88,11 +88,11 @@ setTimeout(() => {
         }, 1500);
       }
 
-
+    
       axios({
         method: 'get',
         url: 'http://localhost:3000/api/wishlists',
-        headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTczNDk2NTMsInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.jNoDnskdlnY2EpJMtP_dx6GbbAQq4OjgRwVWgOdn7Jc" }
+        headers: { 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTg4OTA4MTAsInN1YiI6MSwibmFtZSI6IkFsaWNlIn0.BX9PUB8Dd4Hfk_IcU4ZYN3yKY_az2f4BppJ0mwk5uXw" }
       })
         .then(response => {
           //generate user lists with checkboxes

@@ -1,3 +1,4 @@
+/*global chrome*/
 import React, { Component } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
@@ -27,6 +28,15 @@ class LoginForm extends Component {
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
       //console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
+      // The ID of the extension we want to talk to.
+      var editorExtensionId = "imhbkmffbjhkfijjbfjamdcpfnlfalna";
+
+      // Make a simple request:
+      chrome.runtime.sendMessage(editorExtensionId, {openUrlInEditor: 'http://localhost:3000/'},
+        function(response) {
+          if (!response.success)
+            return false;
+        });
       let decodedToken = jwtDecode(response.data.jwt)
       //console.log(decodedToken)
       this.setState({
