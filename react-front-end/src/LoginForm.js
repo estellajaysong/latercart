@@ -27,12 +27,11 @@ class LoginForm extends Component {
     })
     .then(response => {
       localStorage.setItem("jwt", response.data.jwt);
-      //console.log('jwt>>>>>>>>>>>>>',response.data.jwt)
+      
       // The ID of the extension we want to talk to.
       var editorExtensionId = "imhbkmffbjhkfijjbfjamdcpfnlfalna";
-
-      // Make a simple request:
-      chrome.runtime.sendMessage(editorExtensionId, {openUrlInEditor: 'http://localhost:3000/'},
+      // Send the token:
+      chrome.runtime.sendMessage(editorExtensionId, {token: response.data.jwt},
         function(response) {
           if (!response.success)
             return false;

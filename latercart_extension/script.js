@@ -10,9 +10,17 @@ chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
 
  chrome.runtime.onMessageExternal.addListener(
   function(request, sender, sendResponse) {
-    console.log('hello')
-    if (sender.url == 'xx')
-      return;  // don't allow this web page access
-    if (request.openUrlInEditor)
-      console.log(request.openUrlInEditor);
+    if (request.token) {
+      console.log(request.token);
+      let userToken = request.token;
+      // const port = chrome.runtime.connect({name: "knockknock"});
+      // port.postMessage({userToken: request.token});
+      // port.onMessage.addListener(function(msg) {
+      //   if (msg.question == "Who's there?")
+      //     port.postMessage({answer: "Madame"});
+      //   else if (msg.question == "Madame who?")
+      //     port.postMessage({answer: "Madame... Bovary"});
+      // });
+    }
   });
+
